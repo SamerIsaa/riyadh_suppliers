@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\PageRequest;
 use App\Http\Resources\PanelDatatable\PageResource;
 use App\Model\Page;
+use App\Model\Setting;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -22,7 +23,7 @@ class PageController extends Controller
     {
         $items = Page::query()->filter()->orderByDesc('created_at');
         $resource = new PageResource($items);
-        return filterDataTable($items,$resource, $request);
+        return filterDataTable($items, $resource, $request);
     }
 
 
@@ -45,7 +46,7 @@ class PageController extends Controller
 
     public function update(PageRequest $request, $id)
     {
-        Page::query()->updateOrCreate(['id' => $id ] , $request->only(Page::FILLABLE))->createTranslation($request);
+        Page::query()->updateOrCreate(['id' => $id], $request->only(Page::FILLABLE))->createTranslation($request);
         return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
 
     }
@@ -57,4 +58,33 @@ class PageController extends Controller
         return $admin->delete() ? $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK) : $this->response_api(true, __('front.error'), StatusCodes::INTERNAL_ERROR);
     }
 
+
+    public function indexHome()
+    {
+        $data['settings'] = new Setting();
+        return view('panel.pages.home_page', $data);
+    }
+
+    public function storeHome(Request $request)
+    {
+        $data = $request->all();
+        unset($data['_token']);
+        if ($request->hasFile('slider_image')) {
+            $image = uploadImage($request, 'slider_image');
+            $data['slider_image'] = $image->file_name ?? '';
+        }
+
+        if ($request->hasFile('about_company_image')) {
+            $image = uploadImage($request, 'about_company_image');
+            $data['about_company_image'] = $image->file_name ?? '';
+        }
+        if ($request->hasFile('why_us_image')) {
+            $image = uploadImage($request, 'why_us_image');
+            $data['why_us_image'] = $image->file_name ?? '';
+        }
+
+        Setting::setSetting($data);
+        return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
+
+    }
 }

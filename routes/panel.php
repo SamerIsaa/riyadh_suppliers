@@ -132,6 +132,11 @@ Route::group([
 
             });
 
+            Route::group(['prefix' => 'home-page' , 'as' => 'home_page.','middleware' => 'permission:manage_pages'], function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'PageController@indexHome']);
+                Route::put('/', ['as' => 'store', 'uses' => 'PageController@storeHome']);
+            });
+
             Route::group(['prefix' => 'settings' , 'as' => 'settings.','middleware' => 'permission:manage_settings'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'SettingsController@index']);
                 Route::put('/', ['as' => 'store', 'uses' => 'SettingsController@store']);

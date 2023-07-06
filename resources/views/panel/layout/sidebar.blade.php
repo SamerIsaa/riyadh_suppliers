@@ -357,6 +357,14 @@
                             <span class="menu-text">@lang('panel.site_pages')</span>
                         </a>
                     </li>
+                    <li class="menu-item {{@$is_active=='home_page'?'menu-item-active':''}}" aria-haspopup="true">
+                        <a href="{{route('panel.home_page.index')}}" class="menu-link">
+                            <span class="svg-icon menu-icon">
+                                <i class="fa fa-home"></i>
+                            </span>
+                            <span class="menu-text">@lang('panel.home_page')</span>
+                        </a>
+                    </li>
                 @endcan
 
 
