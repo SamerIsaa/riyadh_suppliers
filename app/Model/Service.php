@@ -2,23 +2,21 @@
 
 namespace App\Model;
 
-
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
-class BankAccount extends Model
+class Service extends Model
 {
+
+
     use Translatable, SoftDeletes;
 
+    public $translatedAttributes = ['title', 'description'];
+    public $translationModel = ServiceTranslation::class;
+    const FILLABLE = ['is_active' , 'image'];
     protected $fillable = self::FILLABLE;
-
-    const FILLABLE = [
-        'iban', 'number', 'owner_name', 'is_active', 'soft'
-    ];
-    public $translatedAttributes = ['bank_name'];
-    public $translationModel = BankAccountTranslation::class;
 
 
     public function createTranslation(Request $request)
@@ -34,19 +32,19 @@ class BankAccount extends Model
         return $this;
     }
 
-    public function scopeFilter($q)
+    public function scopeSearch($q)
     {
+
         $query = request('query');
-
         if (isset($query['generalSearch'])) {
-            $q->whereHas('translations', function ($q) use ($query) {
-                $q->where('bank_name', 'like', '%' . $query['generalSearch'] . '%');
-            })->orWhere('iban', 'like', '%' . $query['generalSearch'] . '%')
-                ->orWhere('owner_name', 'like', '%' . $query['generalSearch'] . '%')
-                ->orWhere('number', 'like', '%' . $query['generalSearch'] . '%')
-                ->orWhere('soft', 'like', '%' . $query['generalSearch'] . '%');
+            $q->whereTranslationLike('title', "%{$query['generalSearch']}%")->orWhereTranslationLike('description', "%{$query['generalSearch']}%");
         }
-
-        return $q;
     }
+
+    public function scopeActive($q)
+    {
+        return $q->where('is_active', 1);
+    }
+
+
 }

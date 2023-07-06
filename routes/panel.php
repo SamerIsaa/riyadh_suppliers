@@ -31,6 +31,7 @@ Route::group([
 
         Route::group(['middleware' => 'auth:admin'], function () {
 
+            Route::get('logout', 'Auth\LoginController@logout')->name('logout');
             Route::get('index', 'HomeController@index')->name('index');
 
             Route::group(['prefix' => 'admins', 'as' => 'admins.'], function () {
@@ -77,22 +78,24 @@ Route::group([
 
 
             // Faq Category Routes //
-            Route::group(['prefix' => 'faq-categories', 'as' => 'faq_categories.','middleware' => 'permission:manage_faq'], function () {
+             Route::group(['prefix' => 'services', 'as' => 'services.','middleware' => 'permission:manage_services'], function () {
+                Route::get('index', ['as' => 'index', 'uses' => 'ServiceController@index']);
+                Route::get('datatable', ['as' => 'datatable', 'uses' => 'ServiceController@datatable']);
 
-                Route::get('/', ['as' => 'index', 'uses' => 'FaqCategoryController@index']);
-                Route::get('/datatable', ['as' => 'datatable', 'uses' => 'FaqCategoryController@datatable']);
+                Route::group(['prefix' => '/create'], function () {
+                    Route::get('/', ['as' => 'create', 'uses' => 'ServiceController@create']);
+                    Route::post('/', ['as' => 'store', 'uses' => 'ServiceController@store']);
+                });
 
-                Route::group(['prefix' => 'create'], function () {
-                    Route::get('/', ['as' => 'create', 'uses' => 'FaqCategoryController@create']);
-                    Route::post('/', ['as' => 'store', 'uses' => 'FaqCategoryController@store']);
+                Route::group(['prefix' => '{id}/'], function () {
+                    Route::get('/edit', ['as' => 'edit', 'uses' => 'ServiceController@edit']);
+                    Route::put('/edit', ['as' => 'update', 'uses' => 'ServiceController@update']);
+                    Route::delete('/', ['as' => 'destroy', 'uses' => 'ServiceController@destroy']);
                 });
-                Route::group(['prefix' => '{id}'], function () {
-                    Route::get('/edit', ['as' => 'edit', 'uses' => 'FaqCategoryController@edit']);
-                    Route::put('/edit', ['as' => 'update', 'uses' => 'FaqCategoryController@update']);
-                    Route::delete('/', ['as' => 'destroy', 'uses' => 'FaqCategoryController@destroy']);
-                });
+                Route::post('operation', ['as' => 'operation', 'uses' => 'ServiceController@operation']);
             });
-            Route::group(['prefix' => 'faq/', 'as' => 'faq.','middleware' => 'permission:manage_faq'], function () {
+
+             Route::group(['prefix' => 'faq/', 'as' => 'faq.','middleware' => 'permission:manage_faq'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'FaqController@index']);
                 Route::get('datatable', ['as' => 'datatable', 'uses' => 'FaqController@datatable']);
 
@@ -165,30 +168,7 @@ Route::group([
 //
             });
 
-            Route::group(['prefix' => 'blogs', 'as' => 'blogs.', 'middleware' => 'permission:manage_blogs'], function () {
 
-                Route::group(['prefix' => 'create', 'as' => 'create.'], function () {
-                    Route::get('/', ['as' => 'index', 'uses' => 'BlogController@create']);
-                    Route::post('/', ['as' => 'store', 'uses' => 'BlogController@store']);
-                });
-
-                Route::group(['prefix' => 'edit', 'as' => 'edit.'], function () {
-                    Route::get('/{id}', ['as' => 'index', 'uses' => 'BlogController@edit']);
-                    Route::put('/{id}', ['as' => 'update', 'uses' => 'BlogController@update']);
-                });
-
-                Route::group(['prefix' => 'all', 'as' => 'all.'], function () {
-                    Route::get('/', ['as' => 'index', 'uses' => 'BlogController@index']);
-                    Route::get('/data', ['as' => 'data', 'uses' => 'BlogController@getDataTable']);
-                });
-
-                Route::delete('/{id}', ['as' => 'delete', 'uses' => 'BlogController@delete']);
-                Route::post('operation', ['as' => 'operation', 'uses' => 'BlogController@operation']);
-            });
-
-
-
-//            ---------------------------------------------------------------------------------------------
 
             Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 
@@ -216,15 +196,6 @@ Route::group([
                     Route::post('/', ['as' => 'send.store', 'uses' => 'NotificationController@store']);
                 });
             });
-
-//            -----------------------------------------------------------------------------------------------------------------
-
-
-
-            Route::get('logout', function () {
-                \Illuminate\Support\Facades\Auth::guard('admin')->logout();
-                return back();
-            })->name('logout');
 
 
         });

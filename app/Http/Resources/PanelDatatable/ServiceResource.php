@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\PanelDataTable;
+namespace App\Http\Resources\PanelDatatable;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FaqCategoryResource extends JsonResource
+class ServiceResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,14 @@ class FaqCategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        $options = view('panel.faq_categories.partials.options', ['instance' => $this])->render();
+        $options = view('panel.services.partials.options', ['instance' => $this])->render();
+        $active = view('panel.services.partials.active_status', ['instance' => $this])->render();
 
         return [
-            'check' => '',
             'id' => $this['id'],
-            'name' => $this['name'],
+            'title' => $this['title'],
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i A'),
+            'active' => $active,
             'options' => $options,
         ];
     }

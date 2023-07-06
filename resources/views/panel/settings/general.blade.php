@@ -308,19 +308,6 @@
                         </div>
                     </div>
 
-
-                    <div class="card card-custom gutter-b">
-                        <div class="card-footer">
-
-                            <input type="hidden" id="startLat" name="latitude"
-                                   value="{{ $settings->valueOf('latitude')??"29.378586" }}">
-                            <input type="hidden" id="startLon" name="longitude"
-                                   value="{{ $settings->valueOf('longitude')??"47.990341" }}">
-
-                            <div id="map" style="height: 350px;"></div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -336,45 +323,9 @@
 @endsection
 
 @push('panel_js')
-    <script>
 
-        $(document).ready(function () {
-
-            var GoogleMapsDemo = {
-                init: function () {
-                    var location = {lat: parseFloat($('#startLat').val()), lng: parseFloat($('#startLon').val())};
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        center: location,
-                        zoom: 15,
-                    });
-                    var marker = new google.maps.Marker({
-                        position: location,
-                        map: map,
-                        draggable: true,
-                        animation: google.maps.Animation.DROP,
-
-                    });
-
-
-                    google.maps.event.addListener(marker, 'position_changed', function () {
-                        var lat = marker.getPosition().lat();
-                        var lng = marker.getPosition().lng();
-                        $('#startLon').val(lng);
-                        $('#startLat').val(lat);
-                    });
-                }
-            };
-            jQuery(document).ready(function () {
-                GoogleMapsDemo.init()
-            });
-        });
-
-    </script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAIiPJXATL1VQa0KhqL9eWDo834B6v9O2M"
-            type="text/javascript"></script>
-    <script src="{{ asset('panelAssets/js/gmaps.js') }}" type="text/javascript"></script>
     <script src="{{ asset('panelAssets/js/post.js') }}"></script>
-    <script src="{{ asset('panelOld/js/jquery.tagsinput.js') }}"></script>
+    <script src="{{ asset('panelAssets/js/jquery.tagsinput.js') }}"></script>
     <script>
         jQuery(document).ready(function () {
             jQuery('#tags_ar').tagsInput({
@@ -386,11 +337,6 @@
                 defaultText: 'KeyWords'
             });
         });
-
-
-        $('#m_login_signin_submit').click(function (e) {
-            $('form#form').attr('to', ($('form#form').attr('action') + $('.nav-link.active').attr('href')));
-        })
 
     </script>
 @endpush

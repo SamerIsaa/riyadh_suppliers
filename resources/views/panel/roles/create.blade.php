@@ -1,4 +1,4 @@
-@extends('panel.layout.master',['title' => $title,'is_active'=>'admins'])
+@extends('panel.layout.master',['title' => $title,'is_active'=>'roles'])
 @push('panel_css')
     <link rel="stylesheet" href="{{asset('panelAssets/css/custom-style.css')}}">
 @endpush

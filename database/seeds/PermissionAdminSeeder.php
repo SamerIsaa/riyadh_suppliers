@@ -23,21 +23,37 @@ class PermissionAdminSeeder extends Seeder
         ];
 
         $data = [
-            ['name' => 'manage_roles', 'guard_name' => $guard_name,],
             ['name' => 'add_admins', 'guard_name' => $guard_name,],
             ['name' => 'show_admins', 'guard_name' => $guard_name,],
+            ['name' => 'delete_admins', 'guard_name' => $guard_name,],
+            ['name' => 'manage_roles', 'guard_name' => $guard_name,],
+
+
+            ['name' => 'manage_inbox', 'guard_name' => $guard_name,],
+
             ['name' => 'manage_faq', 'guard_name' => $guard_name,],
+            ['name' => 'manage_services', 'guard_name' => $guard_name,],
             ['name' => 'manage_pages', 'guard_name' => $guard_name,],
             ['name' => 'manage_settings', 'guard_name' => $guard_name,],
-            ['name' => 'manage_inbox', 'guard_name' => $guard_name,],
-            ['name' => 'manage_blogs', 'guard_name' => $guard_name,],
         ];
 
+        $admin = \App\Model\Admin::query()->updateOrCreate([
+            'email' => 'admin@admin.com'
+        ], [
+            'name' => 'admin',
+            'password' => \Illuminate\Support\Facades\Hash::make(123456),
+        ]);
+
+
         foreach ($dataRoles as $item) {
-            Role::updateOrCreate(['name' => $item['name']], $item);
+            $role = Role::query()->updateOrCreate(['name' => $item['name']], $item);
         }
         foreach ($data as $item) {
-            Permission::updateOrCreate(['name' => $item['name']], $item);
+            $per = Permission::query()->updateOrCreate(['name' => $item['name']], $item);
+            $role->givePermissionTo($per);
         }
+
+        $admin->syncRoles([$role['id']]);
+
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\PanelDataTable\HelpCenter;
+namespace App\Http\Resources\PanelDatatable\HelpCenter;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Constants\StatusCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\PageRequest;
-use App\Http\Resources\PanelDataTable\PageResource;
+use App\Http\Resources\PanelDatatable\PageResource;
 use App\Model\Page;
 use Illuminate\Http\Request;
 
@@ -20,7 +20,7 @@ class PageController extends Controller
 
     public function datatable(Request $request)
     {
-        $items = Page::query()->filter();
+        $items = Page::query()->filter()->orderByDesc('created_at');
         $resource = new PageResource($items);
         return filterDataTable($items,$resource, $request);
     }
@@ -33,19 +33,19 @@ class PageController extends Controller
 
     public function store(PageRequest $request)
     {
-        Page::create($request->only(Page::FILLABLE))->createTranslation($request);
+        Page::query()->create($request->only(Page::FILLABLE))->createTranslation($request);
         return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
     }
 
     public function edit($id)
     {
-        $data['item'] = Page::findOrFail($id);
+        $data['item'] = Page::query()->findOrFail($id);
         return view('panel.pages.create', $data);
     }
 
     public function update(PageRequest $request, $id)
     {
-        $item = Page::updateOrCreate(['id' => $id ] , $request->only(Page::FILLABLE))->createTranslation($request);
+        Page::query()->updateOrCreate(['id' => $id ] , $request->only(Page::FILLABLE))->createTranslation($request);
         return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
 
     }
@@ -53,7 +53,7 @@ class PageController extends Controller
 
     public function destroy($id)
     {
-        $admin = Page::find($id);
+        $admin = Page::query()->find($id);
         return $admin->delete() ? $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK) : $this->response_api(true, __('front.error'), StatusCodes::INTERNAL_ERROR);
     }
 

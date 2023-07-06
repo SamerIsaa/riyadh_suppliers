@@ -43,6 +43,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-4 col-xl-4 d-flex justify-content-end">
+                                <a href="{{ route('panel.pages.create') }}"
+                                   class="btn btn-primary font-weight-bolder">
+											<span class="svg-icon svg-icon-md">
+												<i class="fa fa-plus"></i>
+											</span>@lang('constants.add')
+                                </a>
+                            </div>
+
+
                         </div>
                     </div>
 

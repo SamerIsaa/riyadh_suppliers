@@ -56,21 +56,6 @@
                             @endforeach
 
 
-
-                                <div class="form-group">
-                                    <label for="exampleSelect1">@lang('panel.categories')
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control selectpicker" name="faq_category_id"
-                                            title="@lang('panel.categories')">
-                                        @foreach($faq_categories as $category)
-                                            <option value="{{$category->id}}" {{ isset($item) && @$item->faq_category_id ==$category->id ? 'selected' :'' }} >{{$category->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-
-
                         </div>
                     </div>
 

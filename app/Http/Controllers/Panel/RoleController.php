@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Constants\StatusCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\RoleRequest;
-use App\Http\Resources\PanelDataTable\RoleResource;
+use App\Http\Resources\PanelDatatable\RoleResource;
 use App\Model\Role;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;

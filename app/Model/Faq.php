@@ -15,7 +15,7 @@ class Faq extends Model
     public $translationModel = FaqTranslation::class;
     public $translationForeignKey = 'faq_id';
 
-    const FILLABLE = ['is_active', 'faq_category_id'];
+    const FILLABLE = ['is_active'];
     protected $fillable = self::FILLABLE;
 
 
@@ -35,28 +35,17 @@ class Faq extends Model
     public function scopeSearch($q, Request $request)
     {
         if ($request->filled('q')) {
-            $q->whereTranslationLike('title', "%{$request->q}%")->orWhereTranslationLike('description', "%{$request->q}%")
-                ->orWhereHas('faqCategory', function ($q) use ($request) {
-                    $q->filter($request);
-                });
+            $q->whereTranslationLike('title', "%{$request->q}%")->orWhereTranslationLike('description', "%{$request->q}%");
         }
         $query = request('query');
         if (isset($query['generalSearch'])) {
-            $q->whereTranslationLike('title', "%{$query['generalSearch']}%")->orWhereTranslationLike('description', "%{$query['generalSearch']}%")
-                ->orWhereHas('faqCategory', function ($q) use ($request) {
-                    $q->filter($request);
-                });
+            $q->whereTranslationLike('title', "%{$query['generalSearch']}%")->orWhereTranslationLike('description', "%{$query['generalSearch']}%");
         }
     }
 
     public function scopeActive($q)
     {
         return $q->where('is_active', 1);
-    }
-
-    public function faqCategory()
-    {
-        return $this->belongsTo(FaqCategory::class);
     }
 
 }

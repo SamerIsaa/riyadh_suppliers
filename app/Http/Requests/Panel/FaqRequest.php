@@ -18,7 +18,7 @@ class FaqRequest extends FormRequest
 
     public function rules()
     {
-        $rules['faq_category_id'] = 'required|exists:faq_categories,id';
+        $rules = [];
         foreach (locales() as $category => $language) {
             $rules['title_'.$category] = 'required|string|max:255';
             $rules['description_'.$category] = 'required|string';
@@ -27,11 +27,11 @@ class FaqRequest extends FormRequest
     }
 
 
-    protected function failedAuthorization()
-    {
-        throw new HttpResponseException(response()->json([
-            'status' => StatusCodes::UNAUTHORIZED,
-            'message' => __('messages.dont_have_permission')
-        ], StatusCodes::UNAUTHORIZED));
-    }
+//    protected function failedAuthorization()
+//    {
+//        throw new HttpResponseException(response()->json([
+//            'status' => StatusCodes::UNAUTHORIZED,
+//            'message' => __('messages.dont_have_permission')
+//        ], StatusCodes::UNAUTHORIZED));
+//    }
 }

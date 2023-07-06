@@ -1,4 +1,4 @@
-@extends('panel.layout.master',['title' => __('panel.faq'),'is_active'=>'faqs'])
+@extends('panel.layout.master',['title' => __('panel.services'),'is_active'=>'services'])
 
 @section('subheader')
 
@@ -7,7 +7,7 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@lang('panel.faq')</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@lang('panel.services')</h5>
                 <!--end::Page Title-->
             </div>
             <!--end::Info-->
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-xl-4 d-flex justify-content-end">
-                                <a href="{{ route('panel.faq.create') }}"
+                                <a href="{{ route('panel.services.create') }}"
                                    class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<i class="fa fa-plus"></i>
@@ -65,7 +65,7 @@
 
     <script src="{{ asset('panelAssets/js/data-ajax.js') }}"></script>
     <script>
-        window.data_url = '{{route('panel.faq.datatable')}}';
+        window.data_url = '{{route('panel.services.datatable')}}';
         window.columns = [
             {
                 field: ' ',

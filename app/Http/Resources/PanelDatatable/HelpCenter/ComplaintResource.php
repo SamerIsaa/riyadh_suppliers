@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\PanelDataTable\HelpCenter;
+namespace App\Http\Resources\PanelDatatable\HelpCenter;
 
 use App\Model\User;
 use Carbon\Carbon;

@@ -19,6 +19,7 @@ return [
     'search' => 'بحث',
     'bank_account'  => 'الحساب البنكي',
     'bank_accounts'  => 'الحسابات البنكية',
+    'services'  => 'خدماتنا',
     'faq'  => 'الاسئلة الشائعة',
     'banks' => 'البنوك',
     'phone_code' => 'مقدمة الدولة',

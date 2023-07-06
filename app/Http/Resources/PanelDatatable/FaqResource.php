@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\PanelDataTable;
+namespace App\Http\Resources\PanelDatatable;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -21,7 +21,6 @@ class FaqResource extends JsonResource
         return [
             'check' => '',
             'id' => $this['id'],
-            'category' => @$this->faqCategory->name,
             'title' => $this['title'],
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i A'),
             'active' => $active,

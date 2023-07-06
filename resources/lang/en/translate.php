@@ -12,7 +12,7 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'app_name' => 'Invoice App',
+    'app_name' => 'Riyadh Supply Company',
 
     'ar' => 'Arabic',
     'en' => 'English',

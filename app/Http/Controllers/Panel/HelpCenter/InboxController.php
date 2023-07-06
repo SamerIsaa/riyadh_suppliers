@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Panel\HelpCenter;
 
 use App\Constants\StatusCodes;
-use App\Http\Resources\PanelDataTable\HelpCenter\InboxResource;
+use App\Http\Resources\PanelDatatable\HelpCenter\InboxResource;
 use App\Model\Contact;
 use App\Model\Replay;
 use Illuminate\Http\Request;

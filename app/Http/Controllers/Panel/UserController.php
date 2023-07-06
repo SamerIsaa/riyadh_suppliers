@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Constants\StatusCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\UserRequest;
-use App\Http\Resources\PanelDataTable\UserResource;
+use App\Http\Resources\PanelDatatable\UserResource;
 use App\Model\Faq;
 use App\Model\User;
 use Illuminate\Http\Request;

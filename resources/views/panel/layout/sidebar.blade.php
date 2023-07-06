@@ -324,45 +324,27 @@
                 @endif
 
 
-                @can('manage_faq')
-
-                    <li class="menu-item menu-item-submenu {{@$is_active=='faqs'|| @$is_active=='faq_categories'?'menu-item-active menu-item-open menu-item-here':''}} "
-                        aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" class="menu-link menu-toggle">
-                                        <span class="svg-icon menu-icon">
-                						    <i class="fa fa-shield-alt"></i>
-                                        </span>
-                            <span class="menu-text">@lang('panel.faq')</span>
-                            <i class="menu-arrow"></i>
+                @can('manage_services')
+                    <li class="menu-item {{@$is_active=='services'?'menu-item-active':''}}"
+                        aria-haspopup="true">
+                        <a href="{{route('panel.services.index')}}" class="menu-link">
+                            <span class="svg-icon menu-icon">
+                                <i class="fa fa-magic"></i>
+                            </span>
+                            <span class="menu-text">@lang('panel.services')</span>
                         </a>
-                        <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-
-                                <li class="menu-item {{@$is_active=='faq_categories'?'menu-item-active':''}}"
-                                    aria-haspopup="true">
-                                    <a href="{{route('panel.faq_categories.index')}}" class="menu-link">
-                                                                                <span class="svg-icon menu-icon">
-                                                                                    <i class="fa fa-toolbox"></i>
-                                                                                </span>
-                                        <span class="menu-text">@lang('panel.categories')</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item {{@$is_active=='faqs'?'menu-item-active':''}}"
-                                    aria-haspopup="true">
-                                    <a href="{{route('panel.faq.index')}}" class="menu-link">
-                                                                                <span class="svg-icon menu-icon">
-                                                                                    <i class="fa fa-toolbox"></i>
-                                                                                </span>
-                                        <span class="menu-text">@lang('panel.faq')</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
                     </li>
-
-
+                @endcan
+                @can('manage_faq')
+                    <li class="menu-item {{@$is_active=='faqs'?'menu-item-active':''}}"
+                        aria-haspopup="true">
+                        <a href="{{route('panel.faq.index')}}" class="menu-link">
+                                                                                <span class="svg-icon menu-icon">
+                                                                                    <i class="fa fa-question"></i>
+                                                                                </span>
+                            <span class="menu-text">@lang('panel.faq')</span>
+                        </a>
+                    </li>
                 @endcan
 
 
@@ -380,102 +362,23 @@
 
 
                 @can('manage_settings')
-
-                    <li class="menu-item menu-item-submenu {{@$is_active=='settings'?'menu-item-active menu-item-open menu-item-here':''}} "
-                        aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" class="menu-link menu-toggle">
-                                        <span class="svg-icon menu-icon">
-                						    <i class="fa fa-cogs"></i>
-                                        </span>
-                            <span class="menu-text">@lang('panel.settings')</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item {{@$is_active=='settings'?'menu-item-active':''}}"
-                                    aria-haspopup="true">
-                                    <a href="{{route('panel.settings.index')}}" class="menu-link">
+                    <li class="menu-item {{@$is_active=='settings'?'menu-item-active':''}}"
+                        aria-haspopup="true">
+                        <a href="{{route('panel.settings.index')}}" class="menu-link">
                                                     <span class="svg-icon menu-icon">
                                                         <i class="fa fa-cogs"></i>
                                                     </span>
-                                        <span class="menu-text">@lang('panel.general_settings')</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                            <span class="menu-text">@lang('panel.settings')</span>
+                        </a>
                     </li>
                 @endcan
 
-                {{--                <li class="menu-item {{@$is_active=='countries'?'menu-item-active':''}}" aria-haspopup="true">--}}
-                {{--                    <a href="{{route('panel.countries.index')}}" class="menu-link">--}}
-                {{--                        <span class="svg-icon menu-icon">--}}
-                {{--                            <i class="kt-menu__link-icon fa fa-globe-asia"></i>--}}
-                {{--                        </span>--}}
-                {{--                        <span class="menu-text">@lang('panel.countries')</span>--}}
-                {{--                    </a>--}}
-                {{--                </li>--}}
-                {{--                <li class="menu-item {{@$is_active=='banks'?'menu-item-active':''}}" aria-haspopup="true">--}}
-                {{--                    <a href="{{route('panel.banks.index')}}" class="menu-link">--}}
-                {{--                        <span class="svg-icon menu-icon">--}}
-                {{--                            <i class="kt-menu__link-icon fas fa-money-check-alt"></i>--}}
-                {{--                        </span>--}}
-                {{--                        <span class="menu-text">@lang('panel.banks')</span>--}}
-                {{--                    </a>--}}
-                {{--                </li>--}}
-
-
-                {{--                <li class="menu-item menu-item-submenu {{@$is_active=='calibers'||@$is_active=='on_bordings'?'menu-item-active menu-item-open menu-item-here':''}} "--}}
-                {{--                    aria-haspopup="true" data-menu-toggle="hover">--}}
-                {{--                    <a href="javascript:;" class="menu-link menu-toggle">--}}
-                {{--                        <span class="svg-icon menu-icon">--}}
-                {{--                                                    <i class="fa fa-ellipsis-h"></i>--}}
-                {{--                        </span>--}}
-                {{--                        <span class="menu-text">@lang('panel.site_constants')</span>--}}
-                {{--                        <i class="menu-arrow"></i>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="menu-submenu">--}}
-                {{--                        <i class="menu-arrow"></i>--}}
-                {{--                        <ul class="menu-subnav">--}}
-
-                {{--                            <li class="menu-item {{@$route_name=='panel.constants.calibers.index'||@$route_name=='panel.constants.calibers.create'?'menu-item-active':''}}"--}}
-                {{--                                aria-haspopup="true">--}}
-                {{--                                <a href="{{route('panel.constants.calibers.index')}}" class="menu-link">--}}
-                {{--                                        <span class="svg-icon menu-icon">--}}
-                {{--                                                    <i class="fa fa-ring"></i>--}}
-                {{--                                        </span>--}}
-                {{--                                    <span class="menu-text">@lang('panel.calibers')</span>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-
-                {{--                            <li class="menu-item {{@$route_name=='panel.constants.on-bording.index'||@$route_name=='panel.constants.on-bording.create'?'menu-item-active':''}}"--}}
-                {{--                                aria-haspopup="true">--}}
-                {{--                                <a href="{{route('panel.constants.on-bording.index')}}" class="menu-link">--}}
-                {{--                                        <span class="svg-icon menu-icon">--}}
-                {{--                                                    <i class="fa fa-mobile"></i>--}}
-                {{--                                        </span>--}}
-                {{--                                    <span class="menu-text">@lang('panel.on_bording')</span>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-
-
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-                {{--                <li class="menu-section">--}}
-                {{--                    <h4 class="menu-text">@lang('panel.settings')</h4>--}}
-                {{--                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>--}}
-                {{--                </li>--}}
 
             </ul>
         </div>
-        </li>
 
-
-        </ul>
         <!--end::Menu Nav-->
     </div>
     <!--end::Menu Container-->
 </div>
-<!--end::Aside Menu-->
-</div>
+
