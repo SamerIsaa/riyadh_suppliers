@@ -28,6 +28,10 @@ class PermissionAdminSeeder extends Seeder
             ['name' => 'delete_admins', 'guard_name' => $guard_name,],
             ['name' => 'manage_roles', 'guard_name' => $guard_name,],
 
+            ['name' => 'add_products', 'guard_name' => $guard_name,],
+            ['name' => 'show_products', 'guard_name' => $guard_name,],
+            ['name' => 'delete_products', 'guard_name' => $guard_name,],
+
 
             ['name' => 'manage_inbox', 'guard_name' => $guard_name,],
 

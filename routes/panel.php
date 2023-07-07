@@ -77,8 +77,31 @@ Route::group([
             });
 
 
+            //products
+            Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+
+                Route::group(['middleware' => 'permission:show_products'], function () {
+                    Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+                    Route::get('/datatable', ['as' => 'datatable', 'uses' => 'ProductController@datatable']);
+                });
+
+                Route::group(['prefix' => 'create', 'middleware' => 'permission:add_products'], function () {
+                    Route::get('/', ['as' => 'create', 'uses' => 'ProductController@create']);
+                    Route::post('/', ['as' => 'store', 'uses' => 'ProductController@store']);
+                });
+                Route::group(['prefix' => '{id}', 'middleware' => 'permission:add_products'], function () {
+                    Route::get('/edit', ['as' => 'edit', 'uses' => 'ProductController@edit']);
+                    Route::put('/edit', ['as' => 'update', 'uses' => 'ProductController@update']);
+                });
+                Route::delete('/{id}', ['as' => 'destroy', 'uses' => 'ProductController@destroy'])->middleware('permission:delete_products');
+                Route::post('operation', ['as' => 'operation', 'uses' => 'ProductController@operation']);
+                Route::post('featured-operation', ['as' => 'featured_operation', 'uses' => 'ProductController@featuredOperation']);
+
+            });
+
+
             // Faq Category Routes //
-             Route::group(['prefix' => 'services', 'as' => 'services.','middleware' => 'permission:manage_services'], function () {
+            Route::group(['prefix' => 'services', 'as' => 'services.', 'middleware' => 'permission:manage_services'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'ServiceController@index']);
                 Route::get('datatable', ['as' => 'datatable', 'uses' => 'ServiceController@datatable']);
 
@@ -95,7 +118,7 @@ Route::group([
                 Route::post('operation', ['as' => 'operation', 'uses' => 'ServiceController@operation']);
             });
 
-             Route::group(['prefix' => 'faq/', 'as' => 'faq.','middleware' => 'permission:manage_faq'], function () {
+            Route::group(['prefix' => 'faq/', 'as' => 'faq.', 'middleware' => 'permission:manage_faq'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'FaqController@index']);
                 Route::get('datatable', ['as' => 'datatable', 'uses' => 'FaqController@datatable']);
 
@@ -114,8 +137,7 @@ Route::group([
             });
 
 
-
-            Route::group(['prefix' => 'pages', 'as' => 'pages.','middleware' => 'permission:manage_pages'], function () {
+            Route::group(['prefix' => 'pages', 'as' => 'pages.', 'middleware' => 'permission:manage_pages'], function () {
 
                 Route::get('/', ['as' => 'index', 'uses' => 'PageController@index']);
                 Route::get('/datatable', ['as' => 'datatable', 'uses' => 'PageController@datatable']);
@@ -132,21 +154,20 @@ Route::group([
 
             });
 
-            Route::group(['prefix' => 'home-page' , 'as' => 'home_page.','middleware' => 'permission:manage_pages'], function () {
+            Route::group(['prefix' => 'home-page', 'as' => 'home_page.', 'middleware' => 'permission:manage_pages'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'PageController@indexHome']);
                 Route::put('/', ['as' => 'store', 'uses' => 'PageController@storeHome']);
             });
 
-            Route::group(['prefix' => 'settings' , 'as' => 'settings.','middleware' => 'permission:manage_settings'], function () {
+            Route::group(['prefix' => 'settings', 'as' => 'settings.', 'middleware' => 'permission:manage_settings'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'SettingsController@index']);
                 Route::put('/', ['as' => 'store', 'uses' => 'SettingsController@store']);
             });
 
 
-
             Route::group(['prefix' => 'help-center', 'as' => 'help-center.', 'namespace' => 'HelpCenter'], function () {
 
-                Route::group(['prefix' => 'inbox', 'as' => 'inbox.','middleware' => 'permission:manage_inbox'], function () {
+                Route::group(['prefix' => 'inbox', 'as' => 'inbox.', 'middleware' => 'permission:manage_inbox'], function () {
                     Route::get('/', ['as' => 'index', 'uses' => 'InboxController@index']);
                     Route::get('/datatable', ['as' => 'datatable', 'uses' => 'InboxController@datatable']);
 
@@ -172,7 +193,6 @@ Route::group([
 //
 //
             });
-
 
 
             Route::group(['prefix' => 'users', 'as' => 'users.'], function () {

@@ -42,6 +42,7 @@ return [
     'back' => 'رجوع',
     'save' => 'حفظ',
     'title' => 'العنوان',
+    'product_number' => 'رقم المنتج',
     'colored_title' => 'العنوان الملون',
     'description' => 'الوصف',
     'date' => 'التاريخ',
@@ -79,6 +80,7 @@ return [
     'canceled' => 'ملغية',
     'pending' => 'معلقة',
     'status' => 'الحالة',
+    'featured' => 'مميز؟',
     'payment_method' => 'طريقة الدفع',
 
 

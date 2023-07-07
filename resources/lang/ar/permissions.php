@@ -12,6 +12,15 @@ return [
             'manage_roles' => 'ادارة الأدوار والصلاحيات',
         ]
     ],
+    'products' => [
+        'name' => 'المنتجات',
+        'perm' => [
+            'add_products' => 'اضافة منتجات',
+            'show_products' => 'عرض المنتجات',
+            'delete_products' => 'حذف المنتجات',
+        ]
+    ],
+
     'help_center' => [
         'name' => 'صندوق الوارد',
         'perm' => [
