@@ -4,6 +4,7 @@ return [
 
     'email' => 'E-mail',
     'mobile' => 'Mobile Number',
+    'order_owner_mobile' => 'Order Owner Mobile Number',
     'landline' => 'Land line',
     'email_or_phone' => 'Email or Phone number',
     'password' => 'Password',
@@ -13,6 +14,8 @@ return [
     'question' => 'Question',
     'answer' => 'Answer',
     'full_name' => 'Full Name',
+    'company_name' => 'Company name',
+    'owner_name' => 'Owner name',
     'f_name' => 'First Name',
     'l_name' => 'Last Name',
     'add_product' => 'Add Product',

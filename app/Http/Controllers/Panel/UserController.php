@@ -17,6 +17,12 @@ class UserController extends Controller
     {
         return view('panel.users.index');
     }
+    public function datatable(Request $request  )
+    {
+        $items = User::query()->filter()->orderByDesc('created_at');
+        $resource= new UserResource($items);
+        return filterDataTable($items ,$resource,$request);
+    }
 
     public function create()
     {
@@ -39,14 +45,14 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $data['item'] = User::findOrFail($id);
+        $data['item'] = User::query()->findOrFail($id);
         return view('panel.users.create', $data);
     }
 
     public function update(UserRequest $request, $id)
     {
         $data = $request->all();
-        $user = User::findOrFail($id);
+        $user = User::query()->findOrFail($id);
 
         if (!$request->filled('password')) {
             $data['password'] = $user->password;
@@ -65,16 +71,10 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::query()->find($id);
         return $user->delete() ? $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK) : $this->response_api(true, __('messages.error'), StatusCodes::INTERNAL_ERROR);
     }
 
-    public function datatable(Request $request  )
-    {
-        $items = User::query()->filter($request);
-        $resource= new UserResource($items);
-        return filterDataTable($items ,$resource,$request);
-    }
 
 
     public function operation(Request $request)

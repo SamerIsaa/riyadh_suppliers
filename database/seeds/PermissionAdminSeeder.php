@@ -23,6 +23,10 @@ class PermissionAdminSeeder extends Seeder
         ];
 
         $data = [
+            ['name' => 'add_users', 'guard_name' => $guard_name,],
+            ['name' => 'show_users', 'guard_name' => $guard_name,],
+            ['name' => 'delete_users', 'guard_name' => $guard_name,],
+
             ['name' => 'add_admins', 'guard_name' => $guard_name,],
             ['name' => 'show_admins', 'guard_name' => $guard_name,],
             ['name' => 'delete_admins', 'guard_name' => $guard_name,],

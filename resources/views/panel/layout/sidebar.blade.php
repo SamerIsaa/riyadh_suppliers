@@ -69,152 +69,163 @@
                     </a>
                 </li>
 
-                <li class="menu-section">
-                    <h4 class="menu-text">@lang('panel.users_management')</h4>
-                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
+                @canany(['add_users', 'show_users','manage_roles' ,'add_admins', 'show_admins','manage_inbox'])
+                    <li class="menu-section">
+                        <h4 class="menu-text">@lang('panel.users_management')</h4>
+                        <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+                    </li>
 
 
-                {{--                <li class="menu-item menu-item-submenu {{@$is_active=='users'?'menu-item-active menu-item-open menu-item-here':''}} "--}}
-                {{--                    aria-haspopup="true" data-menu-toggle="hover">--}}
-                {{--                    <a href="javascript:;" class="menu-link menu-toggle">--}}
-                {{--                                        <span class="svg-icon menu-icon">--}}
-                {{--                                            <i class="kt-menu__link-icon fas fa-users"></i>--}}
-                {{--                                        </span>--}}
-                {{--                        <span class="menu-text">@lang('panel.users')</span>--}}
-                {{--                        <i class="menu-arrow"></i>--}}
-                {{--                    </a>--}}
-                {{--                    <div class="menu-submenu">--}}
-                {{--                        <i class="menu-arrow"></i>--}}
-                {{--                        <ul class="menu-subnav">--}}
 
-                {{--                            <li class="menu-item {{@$route_name=='panel.users.index'?'menu-item-active':''}}"--}}
-                {{--                                aria-haspopup="true">--}}
-                {{--                                <a href="{{route('panel.users.index')}}" class="menu-link">--}}
-                {{--                                                    <span class="svg-icon menu-icon">--}}
-                {{--                                                        <i class="fa fa-ellipsis-h"></i>--}}
-                {{--                                                    </span>--}}
-                {{--                                    <span class="menu-text">@lang('constants.all')</span>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-                {{--                            <li class="menu-item {{@$route_name=='panel.users.create'?'menu-item-active':''}}"--}}
-                {{--                                aria-haspopup="true">--}}
-                {{--                                <a href="{{route('panel.users.create')}}" class="menu-link">--}}
-                {{--                                                    <span class="svg-icon menu-icon">--}}
-                {{--                                                        <i class="fa fa-ellipsis-h"></i>--}}
-                {{--                                                    </span>--}}
-                {{--                                    <span class="menu-text">@lang('constants.add')</span>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
+                    @canany(['add_users', 'show_users'])
+                        <li class="menu-item menu-item-submenu {{@$is_active=='users'?'menu-item-active menu-item-open menu-item-here':''}} "
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="javascript:;" class="menu-link menu-toggle">
+                                                        <span class="svg-icon menu-icon">
+                                                            <i class="kt-menu__link-icon fas fa-users"></i>
+                                                        </span>
+                                <span class="menu-text">@lang('panel.users')</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu">
+                                <i class="menu-arrow"></i>
+                                <ul class="menu-subnav">
 
+                                    @can('show_users')
+                                        <li class="menu-item {{@$route_name=='panel.users.index'?'menu-item-active':''}}"
+                                            aria-haspopup="true">
+                                            <a href="{{route('panel.users.index')}}" class="menu-link">
+                                                                    <span class="svg-icon menu-icon">
+                                                                        <i class="fa fa-ellipsis-h"></i>
+                                                                    </span>
+                                                <span class="menu-text">@lang('constants.all')</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('add_users')
+                                        <li class="menu-item {{@$route_name=='panel.users.create'?'menu-item-active':''}}"
+                                            aria-haspopup="true">
+                                            <a href="{{route('panel.users.create')}}" class="menu-link">
+                                                                    <span class="svg-icon menu-icon">
+                                                                        <i class="fa fa-ellipsis-h"></i>
+                                                                    </span>
+                                                <span class="menu-text">@lang('constants.add')</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </div>
+                        </li>
+                    @endcanany
 
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </li>--}}
-
-                @canany(['manage_roles' ,'add_admins', 'show_admins'])
-                    <li class="menu-item menu-item-submenu {{@$is_active=='admins'|| @$is_active=='roles'?'menu-item-active menu-item-open menu-item-here':''}} "
-                        aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" class="menu-link menu-toggle">
+                    @canany(['manage_roles' ,'add_admins', 'show_admins'])
+                        <li class="menu-item menu-item-submenu {{@$is_active=='admins'|| @$is_active=='roles'?'menu-item-active menu-item-open menu-item-here':''}} "
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
                 						    <i class="fa fa-shield-alt"></i>
                                         </span>
-                            <span class="menu-text">@lang('panel.site_administration')</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
+                                <span class="menu-text">@lang('panel.site_administration')</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu">
+                                <i class="menu-arrow"></i>
+                                <ul class="menu-subnav">
 
-                                @canany(['add_admins' , 'show_admins'])
-                                    <li class="menu-item menu-item-submenu {{@$is_active=='admins'?'menu-item-active menu-item-open menu-item-here':''}} "
-                                        aria-haspopup="true" data-menu-toggle="hover">
-                                        <a href="javascript:;" class="menu-link menu-toggle">
+                                    @canany(['add_admins' , 'show_admins'])
+                                        <li class="menu-item menu-item-submenu {{@$is_active=='admins'?'menu-item-active menu-item-open menu-item-here':''}} "
+                                            aria-haspopup="true" data-menu-toggle="hover">
+                                            <a href="javascript:;" class="menu-link menu-toggle">
                                                     <span class="svg-icon menu-icon">
                                                         <i class="fa fa-user-shield"></i>
                                                     </span>
-                                            <span class="menu-text">@lang('panel.admins')</span>
-                                            <i class="menu-arrow"></i>
-                                        </a>
-                                        <div class="menu-submenu">
-                                            <i class="menu-arrow"></i>
-                                            <ul class="menu-subnav">
-                                                @can('show_admins')
-                                                    <li class="menu-item {{@$route_name =='panel.admins.index'?'menu-item-active':''}}"
-                                                        aria-haspopup="true">
-                                                        <a href="{{route('panel.admins.index')}}" class="menu-link">
+                                                <span class="menu-text">@lang('panel.admins')</span>
+                                                <i class="menu-arrow"></i>
+                                            </a>
+                                            <div class="menu-submenu">
+                                                <i class="menu-arrow"></i>
+                                                <ul class="menu-subnav">
+                                                    @can('show_admins')
+                                                        <li class="menu-item {{@$route_name =='panel.admins.index'?'menu-item-active':''}}"
+                                                            aria-haspopup="true">
+                                                            <a href="{{route('panel.admins.index')}}" class="menu-link">
                                                                 <span class="svg-icon menu-icon">
                                                                     <i class="fa fa-cogs"></i>
                                                                 </span>
-                                                            <span class="menu-text">@lang('constants.all')</span>
-                                                        </a>
-                                                    </li>
-                                                @endcan
+                                                                <span class="menu-text">@lang('constants.all')</span>
+                                                            </a>
+                                                        </li>
+                                                    @endcan
 
-                                                @can('add_admins')
-                                                    <li class="menu-item {{@$route_name =='panel.admins.create' ||  @$route_name =='panel.admins.edit' ?'menu-item-active':''}}"
-                                                        aria-haspopup="true">
-                                                        <a href="{{route('panel.admins.create')}}" class="menu-link">
+                                                    @can('add_admins')
+                                                        <li class="menu-item {{@$route_name =='panel.admins.create' ||  @$route_name =='panel.admins.edit' ?'menu-item-active':''}}"
+                                                            aria-haspopup="true">
+                                                            <a href="{{route('panel.admins.create')}}"
+                                                               class="menu-link">
                                                                 <span class="svg-icon menu-icon">
                                                                     <i class="fa fa-cogs"></i>
                                                                 </span>
-                                                            <span class="menu-text">@lang('constants.add_new')</span>
-                                                        </a>
-                                                    </li>
-                                                @endcan
-                                            </ul>
-                                        </div>
-                                    </li>
-                                @endcanany
+                                                                <span
+                                                                    class="menu-text">@lang('constants.add_new')</span>
+                                                            </a>
+                                                        </li>
+                                                    @endcan
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    @endcanany
 
-                                @can('manage_roles')
-                                    <li class="menu-item {{@$is_active=='roles'?'menu-item-active':''}}"
-                                        aria-haspopup="true">
-                                        <a href="{{route('panel.permission.index')}}" class="menu-link">
+                                    @can('manage_roles')
+                                        <li class="menu-item {{@$is_active=='roles'?'menu-item-active':''}}"
+                                            aria-haspopup="true">
+                                            <a href="{{route('panel.permission.index')}}" class="menu-link">
                                                                                 <span class="svg-icon menu-icon">
                                                                                     <i class="fa fa-toolbox"></i>
                                                                                 </span>
-                                            <span class="menu-text">@lang('panel.roles_permissions')</span>
-                                        </a>
-                                    </li>
-                                @endcan
+                                                <span class="menu-text">@lang('panel.roles_permissions')</span>
+                                            </a>
+                                        </li>
+                                    @endcan
 
-                            </ul>
-                        </div>
-                    </li>
-                @endcanany
+                                </ul>
+                            </div>
+                        </li>
+                    @endcanany
 
-                @canany('manage_inbox')
-                    <li class="menu-item menu-item-submenu {{@$is_active=='help_center'?'menu-item-active menu-item-open menu-item-here':''}} "
-                        aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" class="menu-link menu-toggle">
+                    @canany('manage_inbox')
+                        <li class="menu-item menu-item-submenu {{@$is_active=='help_center'?'menu-item-active menu-item-open menu-item-here':''}} "
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
                 						    <i class="fa fa-headset"></i>
                                         </span>
-                            <span class="menu-text">@lang('panel.help_center')</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
+                                <span class="menu-text">@lang('panel.help_center')</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu">
+                                <i class="menu-arrow"></i>
+                                <ul class="menu-subnav">
 
-                                @can('manage_inbox')
-                                    <li class="menu-item {{@$route_name=='panel.help-center.inbox.index'||@$route_name=='panel.help-center.inbox.show'?'menu-item-active':''}}"
-                                        aria-haspopup="true">
-                                        <a href="{{route('panel.help-center.inbox.index')}}" class="menu-link">
+                                    @can('manage_inbox')
+                                        <li class="menu-item {{@$route_name=='panel.help-center.inbox.index'||@$route_name=='panel.help-center.inbox.show'?'menu-item-active':''}}"
+                                            aria-haspopup="true">
+                                            <a href="{{route('panel.help-center.inbox.index')}}" class="menu-link">
                                                         <span class="svg-icon menu-icon">
                                                             <i class="kt-menu__link-icon fa fa-mail-bulk"></i>
                                                         </span>
-                                            <span class="menu-text">@lang('panel.contact_messages')</span>
-                                        </a>
-                                    </li>
-                                @endcan
+                                                <span class="menu-text">@lang('panel.contact_messages')</span>
+                                            </a>
+                                        </li>
+                                    @endcan
 
 
-                            </ul>
-                        </div>
-                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endcanany
                 @endcanany
+
+
 
                 @canany(['add_products' , 'show_products'])
                     <li class="menu-section">
@@ -267,7 +278,6 @@
                             </div>
                         </li>
                     @endcanany
-
 
                 @endcanany
 

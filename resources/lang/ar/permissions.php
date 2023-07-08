@@ -3,6 +3,14 @@
 
 return [
 
+    'users' => [
+        'name' => 'الاعضاء',
+        'perm' => [
+            'add_users' => 'اضافة اعضاء',
+            'show_users' => 'عرض الاعضاء',
+            'delete_users' => 'حذف الاعضاء',
+        ]
+    ],
     'admins' => [
         'name' => 'المدراء و الصلاحيات',
         'perm' => [

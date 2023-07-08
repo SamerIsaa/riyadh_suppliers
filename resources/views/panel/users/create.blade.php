@@ -33,39 +33,53 @@
                         <!--begin::Form-->
                         <div class="card-body">
 
-                            <div class="form-group">
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">@lang('constants.image')</label>
-
-                                    <div class="col-9">
-                                        <div class="image-input image-input-empty image-input-outline"
-                                             id="kt_user_edit_avatar"
-                                             style="background-image: url('{{ isset($item) ? image_url(@$item->avatar) :  image_url('avatar.png') }}')">
-                                            <div class="image-input-wrapper"></div>
-                                            <label
-                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                data-action="change" data-toggle="tooltip" title=""
-                                                data-original-title="Change">
-                                                <i class="fa fa-pen icon-sm text-muted"></i>
-                                                <input type="file" name="file" accept=".png, .jpg, .jpeg"/>
-                                                <input type="hidden" name="profile_avatar_remove"/>
-                                            </label>
-                                            <span
-                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                data-action="cancel" data-toggle="tooltip" title="Cancel">
-                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                        </span>
-                                            <span
-                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                                data-action="remove" data-toggle="tooltip" title="Remove">
-                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                        </span>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('constants.name')<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="@lang('constants.name')" name="name"
+                                               value="{{@$item->name}}" required/>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
 
+                                    <div class="form-group">
+                                        <label>@lang('constants.email')
+                                            <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" placeholder="@lang('constants.email')" name="email"
+                                               value="{{@$item->email}}" required/>
+                                    </div>
+
+                                </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('constants.company_name')<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="@lang('constants.company_name')" name="company_name"
+                                               value="{{@$item->company_name}}" required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@lang('constants.owner_name')
+                                            <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="@lang('constants.owner_name')" name="owner_name"
+                                               value="{{@$item->owner_name}}" required/>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
 
                             <div class="form-group">
                                 <label>@lang('constants.ssn_id')<span class="text-danger">*</span></label>
@@ -74,19 +88,8 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <label>@lang('constants.name')<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="@lang('constants.name')" name="name"
-                                       value="{{@$item->name}}" required/>
-                            </div>
 
 
-                            <div class="form-group">
-                                <label>@lang('constants.email')
-                                    <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" placeholder="@lang('constants.email')" name="email"
-                                       value="{{@$item->email}}" required/>
-                            </div>
 
 
 {{--                            <div class="form-group">--}}

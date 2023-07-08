@@ -2,11 +2,8 @@
 
 namespace App\Model;
 
-use App\Notifications\ResetPasswordNotification;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -19,8 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'ssn_id', 'name', 'email', 'password', 'avatar', 'fcm_token', 'api_token',
-        'mobile_country_code', 'dial_code', 'mobile_number', 'mobile',
+        'name', 'email', 'address', 'password', 'company_name', 'owner_name',
+        'order_owner_country_code', 'order_owner_dial_code', 'order_owner_mobile_number', 'order_owner_mobile',
+        'mobile_country_code', 'dial_code', 'mobile_number', 'mobile', 'commercial_registration_no', 'tax_no'
     ];
 
     /**
@@ -29,30 +27,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'fcm_token', 'api_token',
+        'password', 'remember_token'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+//
+//    public function sendPasswordResetNotification($token)
+//    {
+//        $this->notify(new ResetPasswordNotification($token));
+//    }
 
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPasswordNotification($token));
-    }
-
-    public function scopeFilter($q, Request $request)
+    public function scopeFilter($q)
     {
         $query = request('query');
 
         if (isset($query['generalSearch'])) {
             $q->where('name', 'like', "%{$query['generalSearch']}%")
-                ->orWhere('ssn_id', 'like', "%{$query['generalSearch']}%")
                 ->orWhere('mobile', 'like', "%{$query['generalSearch']}%")
                 ->orWhere('email', 'like', "%{$query['generalSearch']}%");
 
@@ -60,22 +49,4 @@ class User extends Authenticatable
         return $q;
     }
 
-    public function bank_accounts()
-    {
-        return $this->hasMany(UserBankAccount::class);
-    }
-
-    public function subscriptions()
-    {
-        return $this->hasMany(Subscription::class);
-    }
-
-    public function carts()
-    {
-        return $this->hasMany(Cart::class);
-    }
-    public function paymentLog()
-    {
-        return $this->hasMany(PaymentLog::class);
-    }
 }
