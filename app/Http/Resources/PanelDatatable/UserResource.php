@@ -20,7 +20,7 @@ class UserResource extends JsonResource
         $active = view('panel.users.partials.active_status', ['instance' => $this])->render();
 
         return [
-            'name' => $this['name'],
+            'name' => $this['owner_name'],
             'email' => $this['email'],
             'company_name' => $this['company_name'],
             'order_owner_mobile' => @$this['order_owner_mobile']??'-',

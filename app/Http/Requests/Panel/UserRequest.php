@@ -2,17 +2,7 @@
 
 namespace App\Http\Requests\Panel;
 
-use App\Constants\StatusCodes;
-use App\Http\Requests\User\UserConsumerRequest;
-use App\Http\Requests\User\UserFactoryRequest;
-use App\Http\Requests\User\UserForeignRequest;
-use App\Http\Requests\User\UserGovernmentRequest;
-use App\Http\Requests\User\UserInterpriceRequest;
-use App\Http\Requests\User\UserMediaRequest;
-use App\Http\Requests\User\UserStudentRequest;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UserRequest extends FormRequest
 {
@@ -22,13 +12,10 @@ class UserRequest extends FormRequest
      * @return bool
      */
     protected $id;
-    protected $formRequests;
-
-    public function authorize()
+     public function authorize()
     {
         $this->id = $this->route('id');
-        return true;
-//        return auth('admin')->user()->can('add_users');
+        return auth('admin')->user()->can('add_users');
     }
 
     /**
@@ -38,29 +25,38 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $this->request = reArrangeTeleinputData(request());
+        $this->request = reArrangeOwnerTeleinputData(request());
+
         return [
-            'ssn_id' => 'required|numeric|unique:users,ssn_id,' . $this->id,
-            'name' => 'required|string|max:255',
-            'email' => 'required|email' ,
-//            'mobile' => 'required|numeric' ,
+//            'ssn_id' => 'required|numeric|unique:users,ssn_id,' . $this->id,
+            'company_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $this->id,
+
+            'owner_name' => 'required|string|max:255',
+            'mobile' => 'required|numeric|unique:users,mobile,' . $this->id,
+
+            'order_owner_name' => 'required|string|max:255',
+            'order_owner_mobile' => 'required|numeric|unique:users,order_owner_mobile,' . $this->id,
+            'commercial_registration_no' => 'required|string|max:255',
+            'tax_no' => 'required|string|max:255',
+            'address' => 'required|string' ,
             'password' => 'required_unless:_method,PUT|nullable|min:8',
         ];
 
     }
 
-    protected function failedValidation(Validator $validator)
+    public function attributes()
     {
-        throw new HttpResponseException(response()->json([
-            'status'    => StatusCodes::VALIDATION_ERROR,
-            'msg' => $validator->errors()->first()
-        ], StatusCodes::VALIDATION_ERROR));
-    }
-
-    protected function failedAuthorization()
-    {
-        throw new HttpResponseException(response()->json([
-            'status'    => StatusCodes::UNAUTHORIZED,
-            'msg' => 'ليس لديك صلاحية'
-        ], StatusCodes::UNAUTHORIZED));
+        return [
+            'company_name' => __('constants.company_name'),
+            'email' => __('constants.email'),
+            'owner_name' => __('constants.owner_name'),
+            'mobile' => __('constants.mobile'),
+            'order_owner_mobile' => __('constants.order_owner_mobile'),
+            'commercial_registration_no' => __('constants.commercial_registration_no'),
+            'tax_no' => __('constants.tax_no'),
+            'address' => __('constants.address'),
+        ];
     }
 }

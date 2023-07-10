@@ -18,7 +18,8 @@ return [
     'clients' => 'عملائنا',
     'full_name' => 'الاسم الكامل',
     'company_name' => 'اسم الشركة',
-    'owner_name' => 'اسم المالك',
+    'owner_name' => 'اسم المسؤول',
+    'order_owner_name' => 'اسم مسؤول الطلبات',
     'created_at' => 'تاريخ الإضافة',
     'image' => 'الصورة',
     'actions' => 'العمليات',
@@ -91,4 +92,7 @@ return [
     'cash' => 'نقدي',
     'new_users' => 'الاعضاء الجدد',
     'last_bank_transfers' => 'اخر الحوالات',
+    'commercial_registration_no' => 'رقم السجل التجاري',
+    'tax_no' => 'الرقم الضريبي',
+    'address' => 'العنوان الوطني',
 ];

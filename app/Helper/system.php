@@ -244,4 +244,21 @@ function product_option_types(){
 function uuid(){
     return Str::uuid();
 }
-?>
+
+
+
+function reArrangeTeleinputData(Request $request)
+{
+    $request['mobile_number'] = ltrim(stringNumberToInteger($request->mobile_number), '0');
+    $request['dial_code'] = ltrim(stringNumberToInteger($request->dial_code), '+');
+    $request['mobile'] = $request['dial_code'] . str_replace(' ' , '' , $request['mobile_number']);
+    return $request;
+}
+
+function reArrangeOwnerTeleinputData(Request $request)
+{
+    $request['order_owner_mobile_number'] = ltrim(stringNumberToInteger($request->order_owner_mobile_number), '0');
+    $request['order_owner_dial_code'] = ltrim(stringNumberToInteger($request->order_owner_dial_code), '+');
+    $request['order_owner_mobile'] = $request['order_owner_dial_code'] . str_replace(' ' , '' ,$request['order_owner_mobile_number']);
+    return $request;
+}

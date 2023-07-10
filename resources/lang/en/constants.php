@@ -16,6 +16,7 @@ return [
     'full_name' => 'Full Name',
     'company_name' => 'Company name',
     'owner_name' => 'Owner name',
+    'order_owner_name' => 'Order Owner name',
     'f_name' => 'First Name',
     'l_name' => 'Last Name',
     'add_product' => 'Add Product',
@@ -92,6 +93,10 @@ return [
     'cash' => 'Cash',
     'new_users' => 'New Members',
     'last_bank_transfers' => 'Last bank transfers',
+
+    'commercial_registration_no' => 'Commercial registration no',
+    'tax_no' => 'Tax no',
+    'address' => 'National address',
 
 
 ];

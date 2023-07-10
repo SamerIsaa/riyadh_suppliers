@@ -17,11 +17,12 @@ class UserController extends Controller
     {
         return view('panel.users.index');
     }
-    public function datatable(Request $request  )
+
+    public function datatable(Request $request)
     {
         $items = User::query()->filter()->orderByDesc('created_at');
-        $resource= new UserResource($items);
-        return filterDataTable($items ,$resource,$request);
+        $resource = new UserResource($items);
+        return filterDataTable($items, $resource, $request);
     }
 
     public function create()
@@ -33,13 +34,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-
-        if ($request->hasFile('file')){
-            $image = uploadImage($request , 'file');
-            $data['avatar'] = $image->getOriginal('file_name');
-        }
-
-        User::create($data);
+        User::query()->create($data);
         return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
     }
 
@@ -59,12 +54,6 @@ class UserController extends Controller
         } else {
             $data['password'] = Hash::make($data['password']);
         }
-
-        if ($request->hasFile('file')){
-            $image = uploadImage($request , 'file');
-            $data['avatar'] = $image->getOriginal('file_name');
-        }
-
         $user->update($data);
         return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
     }
@@ -74,7 +63,6 @@ class UserController extends Controller
         $user = User::query()->find($id);
         return $user->delete() ? $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK) : $this->response_api(true, __('messages.error'), StatusCodes::INTERNAL_ERROR);
     }
-
 
 
     public function operation(Request $request)
