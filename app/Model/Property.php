@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
-class Product extends Model
+class Property extends Model
 {
-
     use Translatable, SoftDeletes;
 
-    public $translatedAttributes = ['title', 'description'];
-    public $translationModel = ProductTranslation::class;
-    const FILLABLE = ['number', 'is_active', 'is_featured', 'image', 'price', 'offer_price'];
+    public $translatedAttributes = ['name'];
+    public $translationModel = PropertyTranslation::class;
+
+    const FILLABLE = ['is_active'];
     protected $fillable = self::FILLABLE;
 
 
@@ -33,10 +33,13 @@ class Product extends Model
 
     public function scopeSearch($q)
     {
-
+        if (request()->filled('q')) {
+            $search = request('q');
+            $q->whereTranslationLike('name', "%{$search}%");
+        }
         $query = request('query');
         if (isset($query['generalSearch'])) {
-            $q->whereTranslationLike('title', "%{$query['generalSearch']}%")->orWhereTranslationLike('description', "%{$query['generalSearch']}%");
+            $q->whereTranslationLike('name', "%{$query['generalSearch']}%");
         }
     }
 
@@ -45,9 +48,8 @@ class Product extends Model
         return $q->where('is_active', 1);
     }
 
-    public function scopeFeatured($q)
+    public function options()
     {
-        return $q->where('is_featured', 1);
+        return $this->hasMany(Option::class);
     }
-
 }

@@ -69,15 +69,18 @@
 
                             <div class="form-group">
                                 <label>{{  __('constants.product_number') }}<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="number" value="{{isset($item)?@$item->number :''}}"
+                                <input type="text" class="form-control" name="number"
+                                       value="{{isset($item)?@$item->number :''}}"
                                        required/>
                             </div>
 
-                        @foreach(locales() as $key => $value)
+                            @foreach(locales() as $key => $value)
 
                                 <div class="form-group">
-                                    <label>{{  __('constants.title') }} ({{ __($value) }} )<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="{{ 'title_'.$key }}" value="{{isset($item)?@$item->translate($key)->title:''}}"
+                                    <label>{{  __('constants.title') }} ({{ __($value) }} )<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="{{ 'title_'.$key }}"
+                                           value="{{isset($item)?@$item->translate($key)->title:''}}"
                                            required/>
                                 </div>
 
@@ -86,12 +89,26 @@
                                         ({{ __($value) }} )
                                         <span class="text-danger">*</span></label>
                                     <textarea class="form-control summernote" id="kt_summernote_1" rows="3"
-                                              name="{{ 'description_'.$key }}" required>{{ isset($item)?@$item->translate($key)->description : '' }}</textarea>
+                                              name="{{ 'description_'.$key }}"
+                                              required>{{ isset($item)?@$item->translate($key)->description : '' }}</textarea>
                                 </div>
-
 
                             @endforeach
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>{{  __('constants.price') }}<span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" name="price" value="{{isset($item)?@$item->price :''}}" required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>{{  __('constants.offer_price') }}</label>
+                                        <input type="number" class="form-control" name="offer_price" value="{{isset($item)?@$item->offer_price :''}}"/>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -102,7 +119,8 @@
 
                     <div class="card card-custom gutter-b">
                         <div class="card-footer">
-                            <button type="submit" id="m_login_signin_submit" class="btn btn-primary mr-2 w-100">{{  __('constants.save') }}</button>
+                            <button type="submit" id="m_login_signin_submit"
+                                    class="btn btn-primary mr-2 w-100">{{  __('constants.save') }}</button>
                         </div>
                     </div>
                 </div>

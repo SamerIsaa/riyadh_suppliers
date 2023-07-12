@@ -95,4 +95,6 @@ return [
     'commercial_registration_no' => 'رقم السجل التجاري',
     'tax_no' => 'الرقم الضريبي',
     'address' => 'العنوان الوطني',
+    'price' => 'السعر',
+    'offer_price' => 'سعر الخصم',
 ];

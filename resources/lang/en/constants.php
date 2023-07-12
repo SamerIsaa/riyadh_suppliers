@@ -98,5 +98,7 @@ return [
     'tax_no' => 'Tax no',
     'address' => 'National address',
 
+    'price' => 'Price',
+    'offer_price' => 'Offer price',
 
 ];

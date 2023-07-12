@@ -21,11 +21,12 @@ return [
         ]
     ],
     'products' => [
-        'name' => 'المنتجات',
+        'name' => 'المنتجات والخصائص',
         'perm' => [
             'add_products' => 'اضافة منتجات',
             'show_products' => 'عرض المنتجات',
             'delete_products' => 'حذف المنتجات',
+            'manage_properties' => 'ادارة الخصائص',
         ]
     ],
 

@@ -20,6 +20,8 @@ return [
     'search' => 'بحث',
     'bank_account'  => 'الحساب البنكي',
     'bank_accounts'  => 'الحسابات البنكية',
+    'properties'  => 'الخصائص',
+    'options' => 'خيارات',
     'services'  => 'خدماتنا',
     'faq'  => 'الاسئلة الشائعة',
     'banks' => 'البنوك',

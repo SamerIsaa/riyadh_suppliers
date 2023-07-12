@@ -227,7 +227,7 @@
 
 
 
-                @canany(['add_products' , 'show_products'])
+                @canany(['add_products' , 'show_products' , 'manage_properties'])
                     <li class="menu-section">
                         <h4 class="menu-text">@lang('panel.products')</h4>
                         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -279,6 +279,19 @@
                         </li>
                     @endcanany
 
+
+                    @can('manage_properties')
+                        <li class="menu-item {{@$is_active=='properties'?'menu-item-active':''}}"
+                            aria-haspopup="true">
+                            <a href="{{route('panel.properties.index')}}" class="menu-link">
+                            <span class="svg-icon menu-icon">
+                                <i class="fa fa-certificate"></i>
+                            </span>
+                                <span class="menu-text">@lang('panel.properties')</span>
+                            </a>
+                        </li>
+                    @endcan
+
                 @endcanany
 
 
@@ -291,6 +304,7 @@
                         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                     </li>
                 @endcanany
+
 
                 @can('manage_services')
                     <li class="menu-item {{@$is_active=='services'?'menu-item-active':''}}"

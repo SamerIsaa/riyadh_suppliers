@@ -68,6 +68,8 @@ return [
     'be_vendor_request' => 'Vendors join requests',
 
 
+    'properties' => 'Properties',
+    'options' => 'Options',
     'categories' => 'FAQs Categories',
     'financial' => 'Financial',
     'cash_payments' => 'Cash payments',

@@ -100,7 +100,24 @@ Route::group([
             });
 
 
-            // Faq Category Routes //
+
+            Route::group(['prefix' => 'properties', 'as' => 'properties.', 'middleware' => 'permission:manage_properties'], function () {
+                Route::get('index', ['as' => 'index', 'uses' => 'PropertyController@index']);
+                Route::get('datatable', ['as' => 'datatable', 'uses' => 'PropertyController@datatable']);
+
+                Route::group(['prefix' => '/create'], function () {
+                    Route::get('/', ['as' => 'create', 'uses' => 'PropertyController@create']);
+                    Route::post('/', ['as' => 'store', 'uses' => 'PropertyController@store']);
+                });
+
+                Route::group(['prefix' => '{id}/'], function () {
+                    Route::get('/edit', ['as' => 'edit', 'uses' => 'PropertyController@edit']);
+                    Route::put('/edit', ['as' => 'update', 'uses' => 'PropertyController@update']);
+                    Route::delete('/', ['as' => 'destroy', 'uses' => 'PropertyController@destroy']);
+                });
+                Route::post('operation', ['as' => 'operation', 'uses' => 'PropertyController@operation']);
+            });
+
             Route::group(['prefix' => 'services', 'as' => 'services.', 'middleware' => 'permission:manage_services'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'ServiceController@index']);
                 Route::get('datatable', ['as' => 'datatable', 'uses' => 'ServiceController@datatable']);
