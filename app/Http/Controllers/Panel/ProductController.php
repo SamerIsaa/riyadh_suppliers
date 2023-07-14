@@ -8,6 +8,7 @@ use App\Http\Requests\Panel\ProductRequest;
 use App\Http\Resources\PanelDatatable\ProductResource;
 use App\Http\Controllers\Controller;
 use App\Model\Product;
+use App\Model\Property;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -27,7 +28,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('panel.products.create');
+        $data['properties'] = Property::query()->with('options')->get();
+        return view('panel.products.create' , $data);
     }
 
     public function store(ProductRequest $request)
