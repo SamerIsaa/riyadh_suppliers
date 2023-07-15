@@ -51,6 +51,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data['item'] = Product::query()->findOrFail($id);
+        $data['images'] = json_decode($data['item']->images, true);
         return view('panel.products.create', $data);
     }
 

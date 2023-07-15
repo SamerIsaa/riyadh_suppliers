@@ -53,6 +53,7 @@ return [
     'title' => 'Title',
     'product_number' => 'Product Number',
     'colored_title' => 'Colored Title',
+    'short_description' => 'Short Description',
     'description' => 'Description',
     'date' => 'Date',
     'download_apps' => 'Download App',
@@ -102,5 +103,11 @@ return [
 
     'price' => 'Price',
     'offer_price' => 'Offer price',
+
+
+    'images' => 'Images',
+    'drag_files_or_click_to_upload' => 'Drag files or click to upload',
+    'ten_max_files_upload' => 'Maximum of ten files',
+
 
 ];

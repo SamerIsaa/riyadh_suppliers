@@ -85,6 +85,16 @@
                                 </div>
 
                                 <div class="form-group ">
+                                    <label for="exampleTextarea">{{  __('constants.short_description') }}
+                                        ({{ __($value) }} )
+                                        <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" rows="3"
+                                              name="{{ 'short_description_'.$key }}"
+                                              required>{{ isset($item)?@$item->translate($key)->short_description : '' }}</textarea>
+                                </div>
+
+
+                                <div class="form-group ">
                                     <label for="exampleTextarea">{{  __('constants.description') }}
                                         ({{ __($value) }} )
                                         <span class="text-danger">*</span></label>
@@ -109,6 +119,21 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="form-group row" id="images_type">
+                                <label class="col-md-2 col-form-label">{{__('constants.images')}}</label>
+
+                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                    <div class="dropzone dropzone-default dropzone-primary" id="kt_dropzone_2">
+                                        <div class="dropzone-msg dz-message needsclick">
+                                            <h3 class="dropzone-msg-title">{{__('constants.drag_files_or_click_to_upload')}}</h3>
+                                            <span class="dropzone-msg-desc">{{__('constants.ten_max_files_upload')}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>
@@ -138,4 +163,92 @@
     <script src="{{ asset('panelAssets/js/post.js') }}"></script>
     <script src="{{ asset('panelAssets/js/summernote.js') }}"></script>
     <script src="{{asset('panelAssets/js/edit-user.js')}}"></script>
+
+    <script>
+
+        @if(isset($images))
+            window.images = JSON.parse('{!! json_encode(@$images , true) !!}');
+        @else
+            window.images = [];
+        @endif
+            Dropzone.autoDiscover = false;
+
+        var myDropzone = new Dropzone('#kt_dropzone_2', {
+            url: "{{ route('upload.image') }}",
+            paramName: "image",
+            maxFilesize: 4, // MB
+            acceptedFiles: "image/*,application/pdf",
+            addRemoveLinks: true,
+            autoProcessQueue: false,
+            dictRemoveFile: '<i class="fas fa-trash"></i>',
+            parallelUploads: 1,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            init: function () {
+                this.on("success", function (file, response, formData) {
+                    file.previewElement.classList.add("dz-success");
+                    window.images.push(response);
+
+                });
+                this.on("error", function (file, response, formData) {
+                    file.previewElement.classList.add("dz-error");
+                });
+                this.on("removedfile", function (file, response, formData) {
+                    file.previewElement.remove();
+                    removeFile(file);
+                });
+            },
+            accept: function (file, done) {
+                if (file.name == "justinbieber.jpg") {
+                    done("Naha, you don't.");
+                } else {
+                    done();
+                }
+            },
+        });
+
+        function removeFile(file) {
+            var name = file.name;
+
+            if (window.images !== undefined && window.images.length > 0) {
+                window.images.forEach(function (currentValue, index, arr) {
+                    if (name === currentValue.file_name) {
+                        window.images.splice(index, 1);
+                        console.log(window.images)
+                    }
+                });
+            }
+        }
+
+
+        if (window.images.length > 0) {
+
+            for (var i = 0; i <= window.images.length - 1; i++) {
+                var file = {name: window.images[i].file_name, size: window.images[i].size, id: window.images[i].id};
+                myDropzone.options.addedfile.call(myDropzone, file);
+                myDropzone.options.thumbnail.call(myDropzone, file, '/image/150x150/' + window.images[i].file_name);
+                myDropzone.emit("complete", file);
+            }
+        }
+
+        $(document).on('click', '#m_login_signin_submit', function (e) {
+            e.preventDefault();
+            if (myDropzone.getQueuedFiles().length) {
+                myDropzone.processQueue();
+            } else {
+                $('#form').submit();
+            }
+        });
+
+        myDropzone.on("success", function (file) {
+
+
+            if (myDropzone.getQueuedFiles().length) {
+                myDropzone.processQueue();
+            } else {
+                $('#form').submit();
+            }
+        });
+
+    </script>
+
 @endpush

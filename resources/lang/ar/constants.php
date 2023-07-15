@@ -49,6 +49,7 @@ return [
     'title' => 'العنوان',
     'product_number' => 'رقم المنتج',
     'colored_title' => 'العنوان الملون',
+    'short_description' => 'وصف قصير',
     'description' => 'الوصف',
     'date' => 'التاريخ',
     'download_apps' => 'تحميل التطبيق',
@@ -99,4 +100,10 @@ return [
     'address' => 'العنوان الوطني',
     'price' => 'السعر',
     'offer_price' => 'سعر الخصم',
+
+
+    'images' => 'الصور',
+    'drag_files_or_click_to_upload' => 'اسقاط الملفات أو الضغط للرفع',
+    'ten_max_files_upload' => 'الحد الأقصى عشرة ملفات',
+
 ];

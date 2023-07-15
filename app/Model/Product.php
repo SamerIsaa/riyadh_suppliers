@@ -12,9 +12,9 @@ class Product extends Model
 
     use Translatable, SoftDeletes;
 
-    public $translatedAttributes = ['title', 'description'];
+    public $translatedAttributes = ['title', 'short_description','description'];
     public $translationModel = ProductTranslation::class;
-    const FILLABLE = ['number', 'is_active', 'is_featured', 'image', 'price', 'offer_price'];
+    const FILLABLE = ['number', 'is_active', 'is_featured', 'image','images', 'price', 'offer_price'];
     protected $fillable = self::FILLABLE;
 
 
