@@ -40,6 +40,11 @@ class PermissionAdminSeeder extends Seeder
 
             ['name' => 'manage_inbox', 'guard_name' => $guard_name,],
 
+
+            ['name' => 'add_sliders', 'guard_name' => $guard_name,],
+            ['name' => 'show_sliders', 'guard_name' => $guard_name,],
+            ['name' => 'delete_sliders', 'guard_name' => $guard_name,],
+
             ['name' => 'manage_faq', 'guard_name' => $guard_name,],
             ['name' => 'manage_services', 'guard_name' => $guard_name,],
             ['name' => 'manage_pages', 'guard_name' => $guard_name,],

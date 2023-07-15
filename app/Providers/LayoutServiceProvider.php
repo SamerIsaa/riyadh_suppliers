@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App;
+use App\Model\Setting;
 use Illuminate\Support\ServiceProvider;
 use Route;
 use View;
@@ -33,6 +34,14 @@ class LayoutServiceProvider extends ServiceProvider
             $view->with([
                  'route_name' => $route,
             ]);
+        });
+
+        View::composer('front.*', function ($view) {
+
+            $shared['locale'] = app()->getLocale();
+            $shared['settings'] = new Setting();
+
+            $view->with($shared);
         });
 
     }

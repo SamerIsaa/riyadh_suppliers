@@ -39,14 +39,19 @@ Route::prefix('/file')->group(function () {
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
-    'as' => 'panel.'
+    'as' => 'front.',
+    'namespace' => 'Front'
 ], function () {
-    Route::get('/privacy-policy', ['as' => 'privacy_policy', 'uses' => 'HomeController@privacy_policy']);
-    Route::get('/contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
-    Route::post('/contact', ['as' => 'contact', 'uses' => 'HomeController@storeContact']);
+
+    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+    Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
+
+    Route::group(['prefix' => 'products' , 'as' => 'products.'] , function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
+
+    });
 
 
-});
-Route::get('/', function () {
-    return view('welcome');
+
 });

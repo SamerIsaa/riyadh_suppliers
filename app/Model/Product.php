@@ -50,4 +50,9 @@ class Product extends Model
         return $q->where('is_featured', 1);
     }
 
+    public function scopeNotFeatured($q)
+    {
+        return $q->where('is_featured', false);
+    }
+
 }

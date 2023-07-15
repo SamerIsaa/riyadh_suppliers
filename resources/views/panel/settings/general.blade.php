@@ -120,6 +120,16 @@
 
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-3 text-lg-left text-right">
+                                                        @lang('panel.footer_site_description') ({{ $locale }})
+                                                    </label>
+                                                    <div class="col-9">
+                                                    <textarea class="form-control form-control-lg form-control-solid"
+                                                              name="footer_description_{{$key}}">{{$settings->valueOf('footer_description_'.$key)}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-3 text-lg-left text-right">
                                                         @lang('panel.keywords') ({{ $locale }})
                                                     </label>
                                                     <div class="col-9">

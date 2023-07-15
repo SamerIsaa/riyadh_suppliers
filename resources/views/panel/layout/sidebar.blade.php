@@ -298,10 +298,53 @@
 
 
 
-                @canany(['manage_services' , 'manage_faq' , 'manage_pages' , 'manage_settings'])
+                @canany(['manage_services' , 'manage_faq' , 'manage_pages' , 'manage_settings','show_sliders', 'add_sliders'])
                     <li class="menu-section">
                         <h4 class="menu-text">@lang('panel.constants')</h4>
                         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+                    </li>
+                @endcanany
+
+                @canany(['show_sliders', 'add_sliders'])
+                    <li class="menu-item menu-item-submenu {{@$is_active=='sliders'?'menu-item-active menu-item-open menu-item-here':''}} "
+                        aria-haspopup="true" data-menu-toggle="hover">
+                        <a href="javascript:;" class="menu-link menu-toggle">
+                            <span class="svg-icon menu-icon">
+                                    <i class="fas fa-images"></i>
+                            </span>
+                            <span class="menu-text">@lang('panel.site_sliders')</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="menu-submenu">
+                            <i class="menu-arrow"></i>
+                            <ul class="menu-subnav">
+
+
+                                @can('show_sliders')
+                                    <li class="menu-item {{@$route_name =='panel.sliders.all.index'?'menu-item-active':''}}"
+                                        aria-haspopup="true">
+                                        <a href="{{route('panel.sliders.all.index')}}" class="menu-link">
+                                            <span class="svg-icon menu-icon">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </span>
+                                            <span class="menu-text">@lang('constants.all')</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('add_sliders')
+                                    <li class="menu-item {{@$route_name=='panel.sliders.create.index'?'menu-item-active':''}}"
+                                        aria-haspopup="true">
+                                        <a href="{{route('panel.sliders.create.index')}}" class="menu-link">
+                                            <span class="svg-icon menu-icon">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </span>
+                                            <span class="menu-text">@lang('constants.add')</span>
+                                        </a>
+                                    </li>
+                                @endcan
+
+                            </ul>
+                        </div>
                     </li>
                 @endcanany
 

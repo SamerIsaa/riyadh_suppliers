@@ -153,6 +153,26 @@ Route::group([
 
             });
 
+            Route::group(['prefix' => 'sliders', 'as' => 'sliders.'], function () {
+
+                Route::group(['prefix' => 'create', 'as' => 'create.', 'middleware' => 'permission:add_sliders'], function () {
+                    Route::get('/', ['as' => 'index', 'uses' => 'SliderController@create']);
+                    Route::post('/', ['as' => 'store', 'uses' => 'SliderController@store']);
+                });
+
+                Route::group(['prefix' => 'edit', 'as' => 'edit.', 'middleware' => 'permission:add_sliders'], function () {
+                    Route::get('/{id}', ['as' => 'index', 'uses' => 'SliderController@edit']);
+                    Route::put('/{id}', ['as' => 'update', 'uses' => 'SliderController@update']);
+                });
+
+                Route::group(['prefix' => 'all', 'as' => 'all.', 'middleware' => 'permission:show_sliders'], function () {
+                    Route::get('/', ['as' => 'index', 'uses' => 'SliderController@index']);
+                    Route::get('/data', ['as' => 'data', 'uses' => 'SliderController@getDataTable']);
+                });
+
+                Route::delete('/{id}', ['as' => 'delete', 'uses' => 'SliderController@delete', 'middleware' => 'permission:delete_sliders']);
+                Route::post('operation', ['as' => 'operation', 'uses' => 'SliderController@operation']);
+            });
 
             Route::group(['prefix' => 'pages', 'as' => 'pages.', 'middleware' => 'permission:manage_pages'], function () {
 

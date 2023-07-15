@@ -22,6 +22,14 @@ return [
             'manage_inbox' => 'Manage Inbox',
          ]
     ],
+    'sliders' => [
+        'name' => 'Sliders',
+        'perm' => [
+            'show_sliders' => 'Show Sliders',
+            'add_sliders' => 'Add Sliders',
+            'delete_sliders' => 'Delete Sliders',
+        ]
+    ],
     'constants' => [
         'name' => 'Site Constants',
         'perm' => [

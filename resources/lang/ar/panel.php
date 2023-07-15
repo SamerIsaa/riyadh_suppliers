@@ -48,6 +48,8 @@ return [
     'emp_requests' => 'طلبات التوظيف',
     'copy_rights' => 'حقوق الملكيةً',
     'site_description' => 'وصف الموقع',
+    'footer_site_description' => 'وصف فوتر الموقع',
+    'site_sliders' => 'السلايدر',
     'site_name' => 'اسم الموقعً',
     'keywords' => 'كلمات دلالية',
     'banners' => 'البنارات',

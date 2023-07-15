@@ -132,7 +132,9 @@ return [
 
     'copy_rights'  => 'copy rights',
     'site_description'  => 'site description',
+    'footer_site_description'  => 'site footer description',
     'site_name'  => 'Site Name',
+    'site_sliders' => 'Sliders',
     'keywords'  => 'keywords',
     'contact_details '  => 'contact details',
     'tax'  => 'Tax',
