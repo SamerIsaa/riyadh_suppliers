@@ -36,22 +36,25 @@ Route::prefix('/file')->group(function () {
 });
 
 
-Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
-    'as' => 'front.',
-    'namespace' => 'Front'
-], function () {
-
-    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-    Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
-
-    Route::group(['prefix' => 'products' , 'as' => 'products.'] , function () {
-        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
-        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
-
-    });
-
-
-
+//Route::group([
+//    'prefix' => LaravelLocalization::setLocale(),
+//    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+//    'as' => 'front.',
+//    'namespace' => 'Front'
+//], function () {
+//
+//    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+//    Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
+//
+//    Route::group(['prefix' => 'products' , 'as' => 'products.'] , function () {
+//        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+//        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
+//
+//    });
+//
+//
+//
+//});
+Route::get('/' , function (){
+    return view('welcome');
 });
