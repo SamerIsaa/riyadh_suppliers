@@ -70,7 +70,7 @@ return [
 
     'properties' => 'Properties',
     'options' => 'Options',
-    'categories' => 'FAQs Categories',
+    'categories' => 'Categories',
     'financial' => 'Financial',
     'cash_payments' => 'Cash payments',
     'monthly_subscriptions' => 'Monthly subscriptions',

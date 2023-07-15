@@ -227,13 +227,11 @@
 
 
 
-                @canany(['add_products' , 'show_products' , 'manage_properties'])
+                @canany(['add_products' , 'show_products' , 'manage_properties' , 'show_categories', 'add_categories'])
                     <li class="menu-section">
                         <h4 class="menu-text">@lang('panel.products')</h4>
                         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                     </li>
-
-
 
                     @canany(['add_products' , 'show_products'])
                         <li class="menu-item menu-item-submenu {{@$is_active=='products'?'menu-item-active menu-item-open menu-item-here':''}} "
@@ -279,7 +277,6 @@
                         </li>
                     @endcanany
 
-
                     @can('manage_properties')
                         <li class="menu-item {{@$is_active=='properties'?'menu-item-active':''}}"
                             aria-haspopup="true">
@@ -291,6 +288,49 @@
                             </a>
                         </li>
                     @endcan
+
+                    @canany(['show_categories', 'add_categories'])
+                        <li class="menu-item menu-item-submenu {{@$is_active=='categories'?'menu-item-active menu-item-open menu-item-here':''}} "
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="javascript:;" class="menu-link menu-toggle">
+                            <span class="svg-icon menu-icon">
+                                    <i class="fas fa-sitemap"></i>
+                            </span>
+                                <span class="menu-text">@lang('panel.categories')</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu">
+                                <i class="menu-arrow"></i>
+                                <ul class="menu-subnav">
+
+
+                                    @can('show_categories')
+                                        <li class="menu-item {{@$route_name =='panel.sliders.all.index'?'menu-item-active':''}}"
+                                            aria-haspopup="true">
+                                            <a href="{{route('panel.categories.all.index')}}" class="menu-link">
+                                            <span class="svg-icon menu-icon">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </span>
+                                                <span class="menu-text">@lang('constants.all')</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('add_categories')
+                                        <li class="menu-item {{@$route_name=='panel.categories.create.index' || @$route_name=='panel.categories.edit.index'?'menu-item-active':''}}"
+                                            aria-haspopup="true">
+                                            <a href="{{route('panel.categories.create.index')}}" class="menu-link">
+                                            <span class="svg-icon menu-icon">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </span>
+                                                <span class="menu-text">@lang('constants.add')</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+
+                                </ul>
+                            </div>
+                        </li>
+                    @endcanany
 
                 @endcanany
 

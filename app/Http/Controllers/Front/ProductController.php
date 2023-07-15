@@ -25,6 +25,9 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        return view('front.products.show');
+        $data['item'] = Product::query()->findOrFail($id);
+        $data['images'] = json_decode($data['item']->images, true);
+
+        return view('front.products.show',$data);
     }
 }

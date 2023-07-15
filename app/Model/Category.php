@@ -4,18 +4,17 @@ namespace App\Model;
 
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
-class Product extends Model
+class Category extends Model
 {
-
     use Translatable, SoftDeletes;
 
-    public $translatedAttributes = ['title', 'short_description', 'description'];
-    public $translationModel = ProductTranslation::class;
-    const FILLABLE = ['number', 'is_active', 'is_featured', 'image', 'images', 'price', 'offer_price', 'category_id'];
+    public $translatedAttributes = ['name'];
+    public $translationModel = CategoryTranslation::class;
+
+    const FILLABLE = ['is_active'];
     protected $fillable = self::FILLABLE;
 
 
@@ -34,10 +33,12 @@ class Product extends Model
 
     public function scopeSearch($q)
     {
-
+        if (\request()->filled('q')) {
+            $q->whereTranslationLike('name', "%".request()->q."%");
+        }
         $query = request('query');
         if (isset($query['generalSearch'])) {
-            $q->whereTranslationLike('title', "%{$query['generalSearch']}%")->orWhereTranslationLike('description', "%{$query['generalSearch']}%");
+            $q->whereTranslationLike('name', "%{$query['generalSearch']}%");
         }
     }
 
@@ -46,18 +47,5 @@ class Product extends Model
         return $q->where('is_active', 1);
     }
 
-    public function scopeFeatured($q)
-    {
-        return $q->where('is_featured', 1);
-    }
 
-    public function scopeNotFeatured($q)
-    {
-        return $q->where('is_featured', false);
-    }
-
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
 }

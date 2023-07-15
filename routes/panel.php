@@ -118,6 +118,29 @@ Route::group([
                 Route::post('operation', ['as' => 'operation', 'uses' => 'PropertyController@operation']);
             });
 
+
+            Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+
+                Route::group(['prefix' => 'create', 'as' => 'create.', 'middleware' => 'permission:add_categories'], function () {
+                    Route::get('/', ['as' => 'index', 'uses' => 'CategoryController@create']);
+                    Route::post('/', ['as' => 'store', 'uses' => 'CategoryController@store']);
+                });
+
+                Route::group(['prefix' => 'edit', 'as' => 'edit.', 'middleware' => 'permission:add_categories'], function () {
+                    Route::get('/{id}', ['as' => 'index', 'uses' => 'CategoryController@edit']);
+                    Route::put('/{id}', ['as' => 'update', 'uses' => 'CategoryController@update']);
+                });
+
+                Route::group(['prefix' => 'all', 'as' => 'all.', 'middleware' => 'permission:show_categories'], function () {
+                    Route::get('/', ['as' => 'index', 'uses' => 'CategoryController@index']);
+                    Route::get('/data', ['as' => 'data', 'uses' => 'CategoryController@datatable']);
+                });
+
+                Route::delete('/{id}', ['as' => 'delete', 'uses' => 'CategoryController@delete', 'middleware' => 'permission:delete_categories']);
+                Route::post('operation', ['as' => 'operation', 'uses' => 'CategoryController@operation']);
+            });
+
+
             Route::group(['prefix' => 'services', 'as' => 'services.', 'middleware' => 'permission:manage_services'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'ServiceController@index']);
                 Route::get('datatable', ['as' => 'datatable', 'uses' => 'ServiceController@datatable']);
@@ -173,6 +196,8 @@ Route::group([
                 Route::delete('/{id}', ['as' => 'delete', 'uses' => 'SliderController@delete', 'middleware' => 'permission:delete_sliders']);
                 Route::post('operation', ['as' => 'operation', 'uses' => 'SliderController@operation']);
             });
+
+
 
             Route::group(['prefix' => 'pages', 'as' => 'pages.', 'middleware' => 'permission:manage_pages'], function () {
 

@@ -94,7 +94,7 @@ return [
     'contact_messages' => 'البريد الوارد',
     'be_vendor_request' => 'طلبات انضمام التجار',
 
-    'categories' => 'تصنيفات الاسئلة الشائعة',
+    'categories' => 'التصنيفات',
     'financial' => 'المالية',
     'cash_payments' => 'المدفوعات النقدية',
     'monthly_subscriptions' => 'الاشتراكات الشهرية',

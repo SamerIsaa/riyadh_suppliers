@@ -23,6 +23,7 @@ return [
     'search_by_product_number' => 'ابحث عن رقم القطعة',
     'filter_by' => 'فرز بواسطة',
     'filter_products' => 'فرز المنتجات',
+    'similar_products' => 'منتجات مشابهه',
 
 
 

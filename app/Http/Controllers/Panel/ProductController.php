@@ -7,6 +7,7 @@ use App\Constants\StatusCodes;
 use App\Http\Requests\Panel\ProductRequest;
 use App\Http\Resources\PanelDatatable\ProductResource;
 use App\Http\Controllers\Controller;
+use App\Model\Category;
 use App\Model\Product;
 use App\Model\Property;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class ProductController extends Controller
     public function create()
     {
         $data['properties'] = Property::query()->with('options')->get();
+        $data['categories'] = Category::query()->active()->get();
         return view('panel.products.create' , $data);
     }
 
@@ -52,6 +54,7 @@ class ProductController extends Controller
     {
         $data['item'] = Product::query()->findOrFail($id);
         $data['images'] = json_decode($data['item']->images, true);
+        $data['categories'] = Category::query()->active()->get();
         return view('panel.products.create', $data);
     }
 

@@ -29,6 +29,14 @@ return [
             'manage_properties' => 'ادارة الخصائص',
         ]
     ],
+    'categories' => [
+        'name' => 'التصنيفات',
+        'perm' => [
+            'add_categories' => 'اضافة التصنيفات',
+            'show_categories' => 'عرض التصنيفات',
+            'delete_categories' => 'حذف التصنيفات',
+        ]
+    ],
 
     'help_center' => [
         'name' => 'صندوق الوارد',

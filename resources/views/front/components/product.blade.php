@@ -1,7 +1,10 @@
 <div class="{{ isset($class) ? $class : 'col-lg-3 col-md-6' }}">
     <div class="widget_item-product mb-4 mb-lg-0">
-        <div class="widget_item-image d-flex align-items-center justify-content-center bg-white mb-3"><a href="">
-                <img src="{{ image_url($item->image , '180x270') }}" alt=""/></a></div>
+        <div class="widget_item-image d-flex align-items-center justify-content-center bg-white mb-3">
+            <a href="{{ route('front.products.show' , $item->id ) }}">
+                <img src="{{ image_url($item->image , '180x270') }}" alt=""/>
+            </a>
+        </div>
         <div class="widget__item-content">
             <div class="d-flex align-items-center">
                 <h6 class="text-muted">{{ __('constants.product_number') }} :</h6>

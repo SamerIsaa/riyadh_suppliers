@@ -24,6 +24,7 @@ class ProductRequest extends FormRequest
             'number' => 'required|unique:products,number,' . $this->id,
             'price' => 'required|numeric|min:0',
             'offer_price' => 'nullable|numeric|lt:price',
+            'category_id' => 'required|exists:categories,id',
         ];
         foreach (locales() as $category => $language) {
             $rules['title_' . $category] = 'required|string|max:255';
@@ -41,6 +42,7 @@ class ProductRequest extends FormRequest
             'price' => __('constants.price'),
             'offer_price' => __('constants.offer_price'),
             'images' => __('constants.images'),
+            'category_id' => __('panel.category'),
         ];
     }
 

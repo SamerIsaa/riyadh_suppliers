@@ -105,17 +105,33 @@
 
                             @endforeach
 
+                            <div class="form-group">
+                                <label for="exampleSelect1">@lang('panel.categories')
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-control selectpicker" name="category_id"
+                                        title="@lang('panel.categories')">
+                                    @foreach($categories as $category)
+                                        <option
+                                            value="{{$category->id}}" {{ isset($item) && @$item->category_id ==$category->id ? 'selected' :'' }} >{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{  __('constants.price') }}<span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" name="price" value="{{isset($item)?@$item->price :''}}" required/>
+                                        <input type="number" class="form-control" name="price"
+                                               value="{{isset($item)?@$item->price :''}}" required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{  __('constants.offer_price') }}</label>
-                                        <input type="number" class="form-control" name="offer_price" value="{{isset($item)?@$item->offer_price :''}}"/>
+                                        <input type="number" class="form-control" name="offer_price"
+                                               value="{{isset($item)?@$item->offer_price :''}}"/>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +144,8 @@
                                     <div class="dropzone dropzone-default dropzone-primary" id="kt_dropzone_2">
                                         <div class="dropzone-msg dz-message needsclick">
                                             <h3 class="dropzone-msg-title">{{__('constants.drag_files_or_click_to_upload')}}</h3>
-                                            <span class="dropzone-msg-desc">{{__('constants.ten_max_files_upload')}}</span>
+                                            <span
+                                                class="dropzone-msg-desc">{{__('constants.ten_max_files_upload')}}</span>
                                         </div>
                                     </div>
                                 </div>
