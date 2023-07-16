@@ -13,6 +13,12 @@
 <script src="{{ asset('frontAssets/js/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/function.js') }}"></script>
 
+<script src="{{asset('frontAssets/js/toastr.min.js')}}"></script>
+<script src="{{asset('frontAssets/js/jquery.validate.js')}}" type="text/javascript"></script>
+
+@include('front.layout.partials.toaster')
+
+
 @stack('front_js')
 
 <!--end::Page Vendors-->

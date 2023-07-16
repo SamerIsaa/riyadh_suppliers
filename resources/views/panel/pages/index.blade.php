@@ -90,6 +90,18 @@
                 textAlign: 'text-center',
             },
             {
+                field: 'show_in_header',
+                title: '@lang('constants.show_in_header')',
+                selector: false,
+                textAlign: 'text-center',
+            },
+            {
+                field: 'show_in_footer',
+                title: '@lang('constants.show_in_footer')',
+                selector: false,
+                textAlign: 'text-center',
+            },
+            {
                 field: 'options',
                 title: '@lang('constants.actions')',
                 sortable: false,

@@ -10,7 +10,7 @@ class Contact extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name' , 'email' ,'message' , 'created_at' , 'read_at'
+        'name' , 'email' , 'created_at' , 'read_at'
     ];
 
 
@@ -27,8 +27,7 @@ class Contact extends Model
         if (isset($query['generalSearch'])) {
             $key_search = $query['generalSearch'];
             $q->where('email', 'like', '%' . $key_search . '%')
-                ->orWhere('name', 'like', '%' . $key_search . '%')
-                ->orWhere('message', 'like', '%' . $key_search . '%');
+                ->orWhere('name', 'like', '%' . $key_search . '%');
         }
 
 

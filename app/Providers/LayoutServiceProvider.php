@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App;
+use App\Model\Page;
 use App\Model\Setting;
 use Illuminate\Support\ServiceProvider;
 use Route;
@@ -32,7 +33,7 @@ class LayoutServiceProvider extends ServiceProvider
             $route = Route::current() ? Route::current()->getName() : '';
 
             $view->with([
-                 'route_name' => $route,
+                'route_name' => $route,
             ]);
         });
 
@@ -40,6 +41,8 @@ class LayoutServiceProvider extends ServiceProvider
 
             $shared['locale'] = app()->getLocale();
             $shared['settings'] = new Setting();
+            $shared['header_pages'] = Page::query()->where('show_in_header', true)->with('translations')->get();
+            $shared['footer_pages'] = Page::query()->where('show_in_footer', true)->with('translations')->get();
 
             $view->with($shared);
         });

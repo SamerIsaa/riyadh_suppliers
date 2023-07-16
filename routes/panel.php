@@ -100,7 +100,6 @@ Route::group([
             });
 
 
-
             Route::group(['prefix' => 'properties', 'as' => 'properties.', 'middleware' => 'permission:manage_properties'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'PropertyController@index']);
                 Route::get('datatable', ['as' => 'datatable', 'uses' => 'PropertyController@datatable']);
@@ -198,7 +197,6 @@ Route::group([
             });
 
 
-
             Route::group(['prefix' => 'pages', 'as' => 'pages.', 'middleware' => 'permission:manage_pages'], function () {
 
                 Route::get('/', ['as' => 'index', 'uses' => 'PageController@index']);
@@ -211,6 +209,7 @@ Route::group([
                 Route::group(['prefix' => '{id}'], function () {
                     Route::get('/edit', ['as' => 'edit', 'uses' => 'PageController@edit']);
                     Route::put('/edit', ['as' => 'update', 'uses' => 'PageController@update']);
+                    Route::post('operation', ['as' => 'operation', 'uses' => 'PageController@operation']);
                     Route::delete('/', ['as' => 'destry', 'uses' => 'PageController@destroy']);
                 });
 

@@ -106,4 +106,7 @@ return [
     'drag_files_or_click_to_upload' => 'اسقاط الملفات أو الضغط للرفع',
     'ten_max_files_upload' => 'الحد الأقصى عشرة ملفات',
 
+    'show_in_footer' => 'عرض في الفوتر',
+    'show_in_header' => 'عرض في الهيدر',
+
 ];

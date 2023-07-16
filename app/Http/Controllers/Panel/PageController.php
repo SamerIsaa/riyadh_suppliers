@@ -87,4 +87,24 @@ class PageController extends Controller
         return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
 
     }
+
+
+    public function operation(Request $request)
+    {
+        $item = Page::query()->find($request->id);
+        if (isset($item)) {
+            if ($request->type == "show_in_header") {
+                $item->show_in_header = !$item->show_in_header;
+            } elseif ($request->type == "show_in_footer") {
+                $item->show_in_footer = !$item->show_in_footer;
+            } else {
+                return $this->response_api(false, __('messages.error'), StatusCodes::INTERNAL_ERROR);
+            }
+            $item->save();
+            return $this->response_api(true, __('messages.done_successfully'), StatusCodes::OK);
+        } else {
+            return $this->response_api(false, __('messages.error'), StatusCodes::INTERNAL_ERROR);
+        }
+
+    }
 }

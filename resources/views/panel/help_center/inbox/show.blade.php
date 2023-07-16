@@ -63,11 +63,11 @@
                                         <span style="font-size: 15px;font-weight: bold">@lang('constants.email')</span>
                                         : {{$item->email}}
                                     </div>
-                                    <div class="card-spacer-x py-3 toggle-off-item">
-                                        <span
-                                            style="font-size: 15px;font-weight: bold">@lang('constants.message')</span>
-                                        : {{$item->message}}
-                                    </div>
+{{--                                    <div class="card-spacer-x py-3 toggle-off-item">--}}
+{{--                                        <span--}}
+{{--                                            style="font-size: 15px;font-weight: bold">@lang('constants.message')</span>--}}
+{{--                                        : {{$item->message}}--}}
+{{--                                    </div>--}}
                                 </div>
 
                                 @foreach($item->replies as $replay)

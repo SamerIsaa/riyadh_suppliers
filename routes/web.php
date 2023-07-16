@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,25 +37,30 @@ Route::prefix('/file')->group(function () {
 });
 
 
-//Route::group([
-//    'prefix' => LaravelLocalization::setLocale(),
-//    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
-//    'as' => 'front.',
-//    'namespace' => 'Front'
-//], function () {
-//
-//    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-//    Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
-//
-//    Route::group(['prefix' => 'products' , 'as' => 'products.'] , function () {
-//        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
-//        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
-//
-//    });
-//
-//
-//
-//});
-Route::get('/' , function (){
-    return view('welcome');
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+    'as' => 'front.',
+    'namespace' => 'Front'
+], function () {
+
+    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+    Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
+
+    Route::group(['prefix' => 'products' , 'as' => 'products.'] , function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
+
+    });
+
+    Route::group(['prefix' => 'contact-us' , 'as' => 'contacts.'] , function () {
+        Route::post('/', [ ContactController::class , 'store'])->name('store');
+    });
+
+
+    Route::get('/page/{id}', ['as' => 'page.show', 'uses' => 'HomeController@page']);
+
 });
+//Route::get('/' , function (){
+//    return view('welcome');
+//});

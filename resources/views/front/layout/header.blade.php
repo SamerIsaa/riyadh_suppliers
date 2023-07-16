@@ -28,6 +28,12 @@
                         <a class="nav-link {{ @$active=="products" ? "active" : "" }}"
                            href="#products">{{ __('landing.products') }}</a>
                     </li>
+                    @foreach($header_pages as $page)
+                    <li class="nav-item">
+                        <a class="nav-link {{ @$active=="page_" . $page->id  ? "active" : "" }}"
+                           href="{{ route('front.page.show' , $page->id) }}">{{ $page->title }}</a>
+                    </li>
+                    @endforeach
                     <li class="nav-item register">
                         <a class="nav-link" href="#">{{ __('landing.register_new_account') }}</a>
                     </li>

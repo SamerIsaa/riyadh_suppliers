@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('frontAssets/css/bootstrap.rtl.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('frontAssets/css/main.css') }}"/>
 
+    <link rel="stylesheet" href="{{ asset('frontAssets/css/toastr.min.css') }}" />
 
     @stack('front_css')
 

@@ -11,7 +11,7 @@ class Page extends Model
 {
     use Translatable;
 
-    const FILLABLE = ['created_at'];
+    const FILLABLE = ['created_at','show_in_header' , 'show_in_footer'];
     public $translatedAttributes = ['title', 'content'];
     public $translationModel = PageTranslation::class;
 

@@ -109,5 +109,9 @@ return [
     'drag_files_or_click_to_upload' => 'Drag files or click to upload',
     'ten_max_files_upload' => 'Maximum of ten files',
 
+    'show_in_footer' => 'Show in footer',
+    'show_in_header' => 'Show in header',
+
+
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\StatusCodes;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    function response_api($status, $message, $statusCode, $items = null)
+    function response_api($status, $message, $statusCode = StatusCodes::OK, $items = null)
     {
         $response = ['status' => $status, 'message' => $message];
         if ($status && isset($items)) {

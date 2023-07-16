@@ -28,6 +28,9 @@ class ProductController extends Controller
         $data['item'] = Product::query()->findOrFail($id);
         $data['images'] = json_decode($data['item']->images, true);
 
+        $data['similar_products'] = Product::query()
+            ->where('id' , '<>' , $id)
+            ->where('category_id' , @$data['item']->category_id)->get();
         return view('front.products.show',$data);
     }
 }

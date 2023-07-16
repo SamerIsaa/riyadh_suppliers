@@ -13,8 +13,12 @@
                                 <div class="slider__thumbs">
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="slider__image"><img
+                                                        src="{{ image_url($item['image']) }}" alt=""/></div>
+                                            </div>
+
                                             @foreach($images as $image)
-                                                {{--                                                @dd($image)--}}
                                                 <div class="swiper-slide">
                                                     <div class="slider__image"><img
                                                             src="{{ image_url($image['file_name']) }}" alt=""/></div>
@@ -30,7 +34,13 @@
                                 <div class="slider__images">
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="slider__image"><img
+                                                        src="{{ image_url($item['image']) }}" alt=""/></div>
+                                            </div>
+
                                             @foreach($images as $image)
+
                                                 <div class="swiper-slide">
                                                     <div class="slider__image"><img
                                                             src="{{ image_url($image['file_name']) }}" alt=""/></div>
@@ -64,8 +74,8 @@
                     </div>
 
                     <button class="btn btn-primary w-100 font-bold rounded-pill" data-bs-toggle="modal"
-                            data-bs-target="#Modal">طلب تسعير
-
+                            data-bs-target="#Modal">
+                        {{ __('landing.request_pricing') }}
                     </button>
 
                 </div>
@@ -89,44 +99,33 @@
     </section>
     <!-- end:: section -->
     <!-- start:: section -->
-    <section class="section pt-4">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h2 class="font-bold">{{ __('landing.similar_products') }}</h2>
+    @if(isset($similar_products) && $similar_products->count())
+        <section class="section pt-4">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="font-bold">{{ __('landing.similar_products') }}</h2>
+                    </div>
+                </div>
+                <div class="row">
+
+                    @foreach($similar_products as $similar_product)
+                        @include('front.components.product' , ['item' => $similar_product])
+                    @endforeach
+
                 </div>
             </div>
-            <div class="row">
+        </section>
 
-                @include('front.components.product')
-{{--                <div class="col-lg-3 col-md-6">--}}
-{{--                    <div class="widget_item-product mb-4 mb-lg-0">--}}
-{{--                        <div class="widget_item-image d-flex align-items-center justify-content-center bg-white mb-3"><a--}}
-{{--                                href=""> <img src="assets/images/product/img-01.png" alt=""/></a></div>--}}
-{{--                        <div class="widget__item-content">--}}
-{{--                            <div class="d-flex align-items-center">--}}
-{{--                                <h6 class="text-muted">رقم القطعة :</h6>--}}
-{{--                                <h6 class="text-black">976262S000</h6>--}}
-{{--                            </div>--}}
-{{--                            <h3 class="widget_item-title mb-1"><a href="">بلف مكيف هونداي توسان</a></h3>--}}
-{{--                            <div class="d-flex align-items-center">--}}
-{{--                                <h3 class="font-bold text-primary">212.00 رس</h3>--}}
-{{--                                <h4 class="text-muted ms-2 widget_item-oldPrice">بدلا من 300 رس</h4>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}} --}}
-            </div>
-        </div>
-    </section>
+    @endif
 
 
     <div class="modal fade" id="Modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content border rounded-30">
                 <div class="modal-body p-5 text-center">
-                    <div class="mb-4"><img src="assets/images/svg/check.svg" alt=""/></div>
-                    <h3 class="font-bold">تم ارسال طلب التسعير الخاص بك بنجاح.</h3>
+                    <div class="mb-4"><img src="{{ asset('frontAssets/images/svg/check.svg') }}" alt=""/></div>
+                    <h3 class="font-bold">{{ __('landing.request_pricing_sended') }}</h3>
                 </div>
             </div>
         </div>

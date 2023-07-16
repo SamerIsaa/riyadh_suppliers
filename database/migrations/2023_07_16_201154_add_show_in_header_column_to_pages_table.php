@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBankTransferIdColumnToCartsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddBankTransferIdColumnToCartsTable extends Migration
      */
     public function up()
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->unsignedBigInteger('bank_transfer_id')->nullable();
+        Schema::table('pages', function (Blueprint $table) {
+            $table->boolean('show_in_header')->default(false);
+            $table->boolean('show_in_footer')->default(false);
         });
     }
 
@@ -25,8 +26,8 @@ class AddBankTransferIdColumnToCartsTable extends Migration
      */
     public function down()
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->dropColumn('bank_transfer_id');
+        Schema::table('pages', function (Blueprint $table) {
+            $table->dropColumn(['show_in_header' , 'show_in_footer']);
         });
     }
-}
+};

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Model\Faq;
+use App\Model\Page;
 use App\Model\Product;
 use App\Model\Service;
 use App\Model\Slider;
@@ -26,6 +27,13 @@ class HomeController extends Controller
         $data['faqs'] = Faq::query()->active()->with('translations')->get();
 
         return view('front.faqs', $data);
+
+    }
+    public function page($id)
+    {
+        $data['item'] = Page::query()->with('translations')->findOrFail($id);
+
+        return view('front.page', $data);
 
     }
 }

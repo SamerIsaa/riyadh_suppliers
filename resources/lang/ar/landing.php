@@ -24,6 +24,8 @@ return [
     'filter_by' => 'فرز بواسطة',
     'filter_products' => 'فرز المنتجات',
     'similar_products' => 'منتجات مشابهه',
+    'request_pricing' => 'طلب تسعير',
+    'request_pricing_sended' => 'تم ارسال طلب التسعير الخاص بك بنجاح.',
 
 
 

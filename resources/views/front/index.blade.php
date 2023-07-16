@@ -18,7 +18,7 @@
                             {{ $settings->valueOf('slider_description_' . $locale) }}
                         </h3>
                         <div class="home-action wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1500ms">
-                            <a class="btn btn-primary rounded-pill font-bold" href="">
+                            <a class="btn btn-primary rounded-pill font-bold" href="{{ route('front.products.index') }}">
                                 {{ $settings->valueOf('slider_button_title_' . $locale) }}
                             </a>
                         </div>
@@ -196,7 +196,7 @@
                         <h2 class="section-title font-bold text-white">{{ __('landing.contact_us_desc') }}</h2>
                     </div>
                     <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms">
-                        <form action="">
+                        <form action="{{ route('front.contacts.store') }}" method="post" id="form">
                             <div class="row">
                                 <div class="col-lg">
                                     <div class="form-group">
@@ -258,3 +258,7 @@
     <!-- end:: section -->
 
 @endsection
+
+@push('front_js')
+    <script src="{{ asset('frontAssets/js/post.js') }}"></script>
+@endpush
