@@ -21,6 +21,9 @@ class RedirectIfAuthenticated
         if ($guard == "admin" && Auth::guard($guard)->check()) {
             return redirect(route('panel.index'));
         }
+        if (Auth::guard($guard)->check()) {
+            return redirect('/');
+        }
 
         return $next($request);
     }

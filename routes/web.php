@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Front\Auth\LoginController;
+use App\Http\Controllers\Front\Auth\RegisterController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'password/'], function () {
-    Route::get('reset/{token}' , 'Api\V1\User\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('reset' , 'Api\V1\User\Auth\ResetPasswordController@reset')->name('password.update');
+    Route::get('reset/{token}', 'Api\V1\User\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('reset', 'Api\V1\User\Auth\ResetPasswordController@reset')->name('password.update');
 });
 
 Route::get('images/{path}/{size?}', 'MediaController@getPhoto');
@@ -44,22 +47,43 @@ Route::group([
     'namespace' => 'Front'
 ], function () {
 
+    Route::group(['prefix' => 'auth' , 'as' => 'auth.'], function () {
+
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [LoginController::class, 'login']);
+
+        Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::post('/register', [RegisterController::class, 'register']);
+
+
+//        Route::get('password/email', ['as' => 'password.reset' , 'uses' => 'ForgotPasswordController@showLinkRequestForm'] );
+//        Route::post('password/email', ['as' => 'password.email','uses' => 'ForgotPasswordController@sendResetLinkEmail'] );
+//
+//        Route::get('password/reset/{token}', ['as' => 'password.reset' , 'uses' => 'ResetPasswordController@showResetForm'] );
+//        Route::post('password/reset', ['as' => 'password.update','uses' => 'ResetPasswordController@reset'] );
+
+    });
+
     Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
     Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
 
-    Route::group(['prefix' => 'products' , 'as' => 'products.'] , function () {
+    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
         Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
 
     });
 
-    Route::group(['prefix' => 'contact-us' , 'as' => 'contacts.'] , function () {
-        Route::post('/', [ ContactController::class , 'store'])->name('store');
+    Route::group(['prefix' => 'contact-us', 'as' => 'contacts.'], function () {
+        Route::post('/', [ContactController::class, 'store'])->name('store');
     });
 
 
     Route::get('/page/{id}', ['as' => 'page.show', 'uses' => 'HomeController@page']);
 
+    Route::group(['prefix' => 'profile' , 'as' => 'profile.'] , function (){
+        Route::get('/', [UserController::class, 'profile'])->name('index');
+
+    });
 });
 //Route::get('/' , function (){
 //    return view('welcome');

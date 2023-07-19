@@ -4,6 +4,7 @@ return [
 
     'email' => 'E-mail',
     'mobile' => 'Mobile Number',
+    'owner_mobile' => 'Owner Mobile Number',
     'order_owner_mobile' => 'Order Owner Mobile Number',
     'landline' => 'Land line',
     'email_or_phone' => 'Email or Phone number',

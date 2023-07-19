@@ -6,12 +6,17 @@
 <div class="main-wrapper">
 
     <!-- begin:: Header -->
-    @include('front.layout.header')
+    @if(isset($show_header) && $show_header)
+
+        @include('front.layout.header')
+    @endif
 
     @yield('content')
 
     <!-- start:: footer -->
-    @include('front.layout.footer')
+    @if(isset($show_header) && $show_header)
+        @include('front.layout.footer')
+    @endif
     <!-- end:: footer -->
 </div><!-- end:: Page -->
 

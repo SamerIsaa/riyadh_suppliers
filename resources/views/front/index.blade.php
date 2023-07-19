@@ -1,4 +1,4 @@
-@extends('front.layout.master' , ['title' => __('landing.home')  , 'active' =>'home'])
+@extends('front.layout.master' , ['title' => __('landing.home')  , 'active' =>'home', 'show_header' => true])
 
 @section('content')
 

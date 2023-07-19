@@ -35,11 +35,11 @@
                     </li>
                     @endforeach
                     <li class="nav-item register">
-                        <a class="nav-link" href="#">{{ __('landing.register_new_account') }}</a>
+                        <a class="nav-link" href="{{ route('front.auth.register') }}">{{ __('landing.register_new_account') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-primary rounded-pill text-white"
-                           href="#">{{ __('landing.sign_in') }}</a>
+                           href="{{ route('front.auth.login') }}">{{ __('landing.sign_in') }}</a>
                     </li>
                 </ul>
             </div>

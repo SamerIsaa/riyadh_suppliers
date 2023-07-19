@@ -30,30 +30,6 @@
   /*------------------------------------
     steps
   --------------------------------------*/
-  stepsWizard = $("#form-signup").steps({
-    headerTag: "h2",
-    bodyTag: "section",
-    transitionEffect: "fade",
-    autoFocus: true,
-    transitionEffectSpeed: 500,
-    titleTemplate: '<div class="title">#title#</div>',
-    labels: {
-      next: `التالي`,
-      current: "التالي",
-      finish: "انشاء حساب جديد",
-      previous: `Previous`,
-    },
-    onStepChanged: function (event, currentIndex, newIndex) {
-      if (currentIndex == 0) {
-        // $('.actions ul li:first-child').fadeOut(0)
-      }
-      return true;
-    },
-    onFinished: function (event, currentIndex) {
-      //- $('#form-signup').submit()
-      alert("submit");
-    },
-  });
 
   $(".toggle-pass").click(function () {
     var $input = $(this).closest(".input-icon").find(".form-control");

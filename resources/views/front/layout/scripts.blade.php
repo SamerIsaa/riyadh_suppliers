@@ -2,6 +2,7 @@
     window.ok = "{{ __('constants.confirm') }}";
     window.cancel = "{{ __('constants.cancel') }}";
     window.delete = "{{ __('constants.delete') }}";
+    window.errorMessage = window.error_message ="{{ __('messages.error') }}";
 </script>
 <!--end::Global Config-->
 

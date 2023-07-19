@@ -1,4 +1,4 @@
-@extends('front.layout.master' , ['title' => __('landing.faqs')])
+@extends('front.layout.master' , ['title' => __('landing.faqs') , 'show_header' => true])
 
 
 @section('content')

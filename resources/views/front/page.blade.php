@@ -1,4 +1,4 @@
-@extends('front.layout.master' , ['title' => $item->title , 'active' => 'page_' . $item->id])
+@extends('front.layout.master' , ['title' => $item->title , 'active' => 'page_' . $item->id, 'show_header' => true])
 
 
 @section('content')

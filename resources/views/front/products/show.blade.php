@@ -1,4 +1,4 @@
-@extends('front.layout.master' , ['title' => __('landing.products') ])
+@extends('front.layout.master' , ['title' => __('landing.products') , 'show_header' => true])
 
 @section('content')
     @include('front.components.page_header' , ['title' => __('landing.products') , 'main_route' => route('front.products.index') , 'sub_title' => @$item->title ])

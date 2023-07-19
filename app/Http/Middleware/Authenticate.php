@@ -17,14 +17,16 @@ class Authenticate extends Middleware
     {
         if ($this->auth->guard('admin')->check()) {
             return route('panel.index');
+        }else if ($this->auth->guard('web')->check()){
+            return url('/');
         }
 
 
         if (Route::is('panel.*')) {
             return route('panel.showLogin');
         }
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
+
+        return url('/');
+
     }
 }

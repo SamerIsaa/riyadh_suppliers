@@ -5,10 +5,10 @@ var old_text = save_btn.html();
 form.validate({
     rules: {
         password: {
-            minlength: 6
+            minlength: 8
         },
         password_confirmation: {
-            minlength: 6,
+            minlength: 8,
             equalTo: "#password"
         }
     },

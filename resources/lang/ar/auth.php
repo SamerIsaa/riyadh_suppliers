@@ -26,4 +26,8 @@ return [
     'reset_password_sent' => 'تم ارسال بريد لاستعادة كلمة المرور, قم بمراجعة بريدك الالكتروني.',
     'reset_password' => 'اعادة تعيين كلمة المرور',
     'logout' => 'أنت الآن مسجل الخروج',
+    'forget_password' => 'هل نسيت كلمة المرور ؟',
+    'have_account' => 'لديك حساب؟',
+    'dont_have_account' => 'ليس لديك حساب؟',
+    'create_new_account' => 'انشأ حساب جديد',
 ];
