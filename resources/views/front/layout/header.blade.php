@@ -34,13 +34,29 @@
                            href="{{ route('front.page.show' , $page->id) }}">{{ $page->title }}</a>
                     </li>
                     @endforeach
-                    <li class="nav-item register">
-                        <a class="nav-link" href="{{ route('front.auth.register') }}">{{ __('landing.register_new_account') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary rounded-pill text-white"
-                           href="{{ route('front.auth.login') }}">{{ __('landing.sign_in') }}</a>
-                    </li>
+
+
+                    @if(auth()->check())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link border border-white rounded pt-1 px-3" href="#" data-bs-toggle="dropdown">
+                                {{ auth()->user()->owner_name }}
+                                <i class="fa-solid fa-chevron-down fa-xs ms-1"></i>
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow">
+                                <li><a class="dropdown-item" href="{{ route('front.profile.index') }}"><i class="fa-solid fa-user fa-xs me-1"></i> @lang('panel.profile')</a></li>
+                                <li><a class="dropdown-item" href="{{ route('front.auth.logout') }}"><i class="fa-solid fa-right-from-bracket fa-xs me-1"></i> @lang('panel.logout')</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item register">
+                            <a class="nav-link" href="{{ route('front.auth.register') }}">{{ __('landing.register_new_account') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary rounded-pill text-white"
+                               href="{{ route('front.auth.login') }}">{{ __('landing.sign_in') }}</a>
+                        </li>
+                    @endif
+
                 </ul>
             </div>
         </div>
