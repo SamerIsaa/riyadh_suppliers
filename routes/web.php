@@ -80,10 +80,22 @@ Route::group([
 
     Route::get('/page/{id}', ['as' => 'page.show', 'uses' => 'HomeController@page']);
 
-    Route::group(['prefix' => 'profile' , 'as' => 'profile.'] , function (){
-        Route::get('/', [UserController::class, 'profile'])->name('index');
+    Route::group(['middleware' => 'auth'] , function (){
+        Route::group(['prefix' => 'profile' , 'as' => 'profile.' ] , function (){
+            Route::get('/', [UserController::class, 'profile'])->name('index');
+            Route::post('/', [UserController::class, 'update'])->name('update');
+
+            Route::get('/password', [UserController::class, 'passwordIndex'])->name('password.index');
+            Route::post('/password', [UserController::class, 'passwordUpdate'])->name('password.update');
+
+            Route::get('/orders', [UserController::class, 'ordersIndex'])->name('orders.index');
+
+        });
+
+        Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
     });
+
 });
 //Route::get('/' , function (){
 //    return view('welcome');

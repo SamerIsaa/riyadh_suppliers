@@ -43,7 +43,7 @@ return [
     'quantity__not_available_for_sale'                 => 'الكمية غير المتاحة للبيع',
     'cant_cancel_order' => 'عذراً ، لا يمكنك الغاء الطلب الأن ',
     'language_not_supported' => 'اللغة المدخلة غير مدعومة',
-    'invalid_old_password' => 'كلمة المرور الحالية خاطئة',
+    'invalid_old_password' => 'يرجى التأكد من كلمة المرور القديمة المدخلة',
 
 
 

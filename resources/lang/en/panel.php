@@ -101,6 +101,8 @@ return [
     'email' => 'Email',
     'phone' => 'Phone',
     'landline' => 'Landline',
+    'old_password' => 'Old Password',
+    'new_password' => 'New Password',
     'password' => ' Password',
     'add' => 'Add',
     'vendors' => 'Vendors',

@@ -17,7 +17,8 @@
                 @include('front.user.partials.sidebar' , ['sub_active' => 'profile'])
                 <div class="col-lg-9 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms">
                     <div class="box-shadow p-4 p-lg-5 rounded-15">
-                        <form action="">
+                        <form action="{{ route('front.profile.update') }}" method="post" id="form">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-12 mb-3">
                                     <h3 class="font-bold">@lang('panel.profile')</h3>
@@ -47,7 +48,7 @@
                                     <div class="form-group">
                                         <label>@lang('constants.owner_mobile')</label>
                                         <div class="input-icon icon-left">
-                                            <input class="form-control" type="text" value="{{ @$user->mobile_number }}"/>
+                                            <input class="form-control" type="text" value="{{ @$user->mobile_number }}" name="mobile_number"/>
                                             <input type="hidden" name="dial_code" value="+966">
                                             <div class="icon d-flex align-items-center">
                                                 <h5 class="text-primary font-bold me-1">+966</h5><img
@@ -90,7 +91,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>@lang('constants.address')</label>
-                                        <textarea class="form-control rounded-15 p-3" rows="4">{{ @$user->address }}</textarea>
+                                        <textarea class="form-control rounded-15 p-3" name="address" rows="4">{{ @$user->address }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -107,3 +108,7 @@
     </section>
 
 @endsection
+
+@push('front_js')
+    <script src="{{ asset('frontAssets/js/post.js') }}"/>
+@endpush

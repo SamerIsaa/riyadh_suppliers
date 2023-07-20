@@ -47,7 +47,7 @@ return [
     'quantity__not_available_for_sale' => 'Quantity not available for sale',
     'cant_cancel_order' => 'Sorry, you cannot cancel the order now',
     'language_not_supported' => 'The entered language is not supported',
-    'invalid_old_password' => 'The current password is wrong',
+    'invalid_old_password' => 'Please verify the old password entered',
 
 
     'order_status' => [
