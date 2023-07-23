@@ -12,6 +12,7 @@ return [
     'password' => 'كلمة المرور',
     'password_confirmation' => 'تأكيد كلمة المرور',
     'ssn_id' => 'الرقم الشخصي',
+    'statistics' => 'احصائيات عامة',
     'name' => 'الإسم',
     'question' => 'السؤال',
     'answer' => 'الإجابة',

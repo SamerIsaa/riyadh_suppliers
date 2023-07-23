@@ -11,6 +11,7 @@ return [
     'password' => 'Password',
     'password_confirmation' => 'Password Confirmation',
     'ssn_id' => 'SSN ID',
+    'statistics' => 'General Statistics',
     'name' => 'Name',
     'question' => 'Question',
     'answer' => 'Answer',
