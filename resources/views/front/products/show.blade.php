@@ -18,12 +18,15 @@
                                                         src="{{ image_url($item['image']) }}" alt=""/></div>
                                             </div>
 
-                                            @foreach($images as $image)
-                                                <div class="swiper-slide">
-                                                    <div class="slider__image"><img
-                                                            src="{{ image_url($image['file_name']) }}" alt=""/></div>
-                                                </div>
-                                            @endforeach
+                                            @if(isset($images))
+                                                @foreach($images as $image)
+                                                    <div class="swiper-slide">
+                                                        <div class="slider__image"><img
+                                                                src="{{ image_url($image['file_name']) }}" alt=""/>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
 
 
                                         </div>
@@ -39,13 +42,16 @@
                                                         src="{{ image_url($item['image']) }}" alt=""/></div>
                                             </div>
 
-                                            @foreach($images as $image)
+                                            @if(isset($images))
+                                                @foreach($images as $image)
 
-                                                <div class="swiper-slide">
-                                                    <div class="slider__image"><img
-                                                            src="{{ image_url($image['file_name']) }}" alt=""/></div>
-                                                </div>
-                                            @endforeach
+                                                    <div class="swiper-slide">
+                                                        <div class="slider__image"><img
+                                                                src="{{ image_url($image['file_name']) }}" alt=""/>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
 
                                         </div>
                                     </div>
