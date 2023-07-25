@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         $data['properties'] = Property::query()->active()->with('options')->get();
-        $data['products'] = Product::query()->active();
+        $data['products'] = Product::query()->active()->filter();
 
         if (request()->filled('is-offer') && request('is-offer') == 1) {
             $data['products'] = $data['products']->featured();
@@ -20,6 +20,15 @@ class ProductController extends Controller
             $data['products'] = $data['products']->notFeatured();
         }
         $data['products'] = $data['products']->latest()->with('translations')->paginate(12);
+
+        if (request()->expectsJson()){
+            $html = view('front.products.partials.content', $data)->render();
+
+            return response()->json([
+                'status' => true,
+                'html' => $html,
+            ]);
+        }
         return view('front.products.index', $data);
     }
 

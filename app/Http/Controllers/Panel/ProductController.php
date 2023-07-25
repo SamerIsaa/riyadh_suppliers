@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         $data['properties'] = Property::query()->with('options')->get();
         $data['categories'] = Category::query()->active()->get();
-        return view('panel.products.create' , $data);
+        return view('panel.products.create', $data);
     }
 
     public function store(ProductRequest $request)
@@ -44,7 +44,8 @@ class ProductController extends Controller
         }
 
 
-        Product::query()->create($data)->createTranslation($request);
+        $item = Product::query()->create($data)->createTranslation($request);
+        $item->saveProps();
 
         return $this->response_api(true, trans('messages.added_successfully'), StatusCodes::OK);
     }
@@ -52,9 +53,13 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $data['item'] = Product::query()->findOrFail($id);
+        $data['item'] = Product::query()->with(['translations', 'properties'])->findOrFail($id);
+        $data['selected_properties'] = $data['item']->properties->map(function ($item) {
+            return $item->only(['property_id', 'option_id']);
+        })->toArray();
         $data['images'] = json_decode($data['item']->images, true);
         $data['categories'] = Category::query()->active()->get();
+        $data['properties'] = Property::query()->with('options')->get();
         return view('panel.products.create', $data);
     }
 
@@ -68,6 +73,7 @@ class ProductController extends Controller
         }
         $item->update($data);
         $item->createTranslation($request);
+        $item->saveProps();
         return $this->response_api(true, trans('messages.added_successfully'), StatusCodes::OK);
     }
 
@@ -84,6 +90,7 @@ class ProductController extends Controller
         }
 
     }
+
     public function featuredOperation(Request $request)
     {
         $item = Product::query()->find($request->id);

@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->float('price',10)->after('image');
-            $table->float('offer_price',10)->after('price')->nullable();
+        Schema::create('product_properties', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('property_id');
+            $table->unsignedBigInteger('option_id');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['price','offer_price']);
-        });
+        Schema::dropIfExists('product_properties');
     }
 };

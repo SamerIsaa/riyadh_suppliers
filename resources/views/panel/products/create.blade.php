@@ -1,6 +1,7 @@
 @extends('panel.layout.master',['title' => __('panel.products'),'is_active'=>'products'])
 
 @section('subheader')
+{{--    @vite('resources/css/app.css')--}}
 
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -152,6 +153,15 @@
                             </div>
 
 
+                            <div id="app">
+                                <form-properties :properties="{{ json_encode($properties) }}" :selected_properties="{{ isset($selected_properties) ? json_encode($selected_properties) : "{}" }}"/>
+{{--                                @change-properties="(changeProperties) => {
+                                window.x = changeProperties;
+                                console.log(window.x)
+                                }"//--}}
+                            </div>
+                            <input type="hidden" name="props" id="props" >
+
                         </div>
                     </div>
 
@@ -173,13 +183,16 @@
         </div>
         <!--end::Container-->
     </div>
+    @vite('resources/js/app.js')
 
 @endsection
 
 @push('panel_js')
+
     <script src="{{ asset('panelAssets/js/post.js') }}"></script>
     <script src="{{ asset('panelAssets/js/summernote.js') }}"></script>
     <script src="{{asset('panelAssets/js/edit-user.js')}}"></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
     <script>
 
@@ -249,7 +262,8 @@
 
         $(document).on('click', '#m_login_signin_submit', function (e) {
             e.preventDefault();
-            if (myDropzone.getQueuedFiles().length) {
+            $('#props').val(JSON.stringify(window.product_props));
+             if (myDropzone.getQueuedFiles().length) {
                 myDropzone.processQueue();
             } else {
                 $('#form').submit();
