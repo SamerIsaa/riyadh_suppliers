@@ -44,6 +44,7 @@
                             </a>
                             <ul class="dropdown-menu border-0 shadow">
                                 <li><a class="dropdown-item" href="{{ route('front.profile.index') }}"><i class="fa-solid fa-user fa-xs me-1"></i> @lang('panel.profile')</a></li>
+                                <li><a class="dropdown-item" href="{{ route('front.cart.index') }}"><i class="fa-solid fa-cart-shopping fa-xs me-1"></i> @lang('landing.cart')</a></li>
                                 <li><a class="dropdown-item" href="{{ route('front.auth.logout') }}"><i class="fa-solid fa-right-from-bracket fa-xs me-1"></i> @lang('panel.logout')</a></li>
                             </ul>
                         </li>

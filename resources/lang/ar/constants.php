@@ -84,7 +84,7 @@ return [
     'income' => 'واردات',
     'total_income' => 'اجمالي الواردات',
     'expense' => 'مصروفات',
-    'total_expense' => 'اجمالي المصروفات',
+    'total' => 'الاجمالي',
     'solved' => 'محلولة',
     'canceled' => 'ملغية',
     'pending' => 'معلقة',

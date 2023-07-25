@@ -86,7 +86,7 @@ return [
     'income' => 'Incomings',
     'total_income' => 'Total Incomings',
     'expense' => 'Expenses',
-    'total_expense' => 'Total Expenses',
+    'total' => 'Total',
 
     'type' => 'Type',
     'solved' => 'Solved',

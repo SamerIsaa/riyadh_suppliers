@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Front\Auth\LoginController;
 use App\Http\Controllers\Front\Auth\RegisterController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\UserController;
 use Illuminate\Support\Facades\Route;
@@ -89,6 +90,12 @@ Route::group([
             Route::post('/password', [UserController::class, 'passwordUpdate'])->name('password.update');
 
             Route::get('/orders', [UserController::class, 'ordersIndex'])->name('orders.index');
+
+        });
+        Route::group(['prefix' => 'cart' , 'as' => 'cart.' ] , function (){
+            Route::get('/', [CartController::class, 'index'])->name('index');
+            Route::post('/', [CartController::class, 'store'])->name('store');
+
 
         });
 
