@@ -41,6 +41,8 @@ return [
     'final_total' => 'الإجمالي',
     'confirm_order' => 'اتمام الطلب',
     'order_date' => 'تاريخ الطلب',
+    'order_details' => 'تفاصيل الطلب',
+    'order_no' => 'رقم الطلب',
     'order_price' => 'السعر',
     'order_not_determined' => 'لم يحدد بعد',
 

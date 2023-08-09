@@ -130,3 +130,12 @@ function getErrors(jqXhr, path) {
     }
     return false;
 }
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}

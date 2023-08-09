@@ -105,6 +105,8 @@ return [
 
     'price' => 'Price',
     'offer_price' => 'Offer price',
+    'init_price' => 'Init Price',
+    'final_price' => 'Final Price',
 
 
     'images' => 'Images',

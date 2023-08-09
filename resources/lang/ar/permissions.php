@@ -38,6 +38,13 @@ return [
         ]
     ],
 
+    'orders' => [
+        'name' => 'الطلبات',
+        'perm' => [
+            'manage_orders' => 'ادارة الطلبات',
+        ]
+    ],
+
     'help_center' => [
         'name' => 'صندوق الوارد',
         'perm' => [

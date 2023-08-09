@@ -227,7 +227,7 @@
 
 
 
-                @canany(['add_products' , 'show_products' , 'manage_properties' , 'show_categories', 'add_categories'])
+                @canany(['add_products' , 'show_products' , 'manage_properties' , 'show_categories', 'add_categories' , 'manage_orders'])
                     <li class="menu-section">
                         <h4 class="menu-text">@lang('panel.products')</h4>
                         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -289,6 +289,7 @@
                         </li>
                     @endcan
 
+
                     @canany(['show_categories', 'add_categories'])
                         <li class="menu-item menu-item-submenu {{@$is_active=='categories'?'menu-item-active menu-item-open menu-item-here':''}} "
                             aria-haspopup="true" data-menu-toggle="hover">
@@ -332,6 +333,17 @@
                         </li>
                     @endcanany
 
+                    @can('manage_orders')
+                        <li class="menu-item {{@$is_active=='orders'?'menu-item-active':''}}"
+                            aria-haspopup="true">
+                            <a href="{{route('panel.orders.index')}}" class="menu-link">
+                            <span class="svg-icon menu-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </span>
+                                <span class="menu-text">@lang('panel.orders')</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endcanany
 
 

@@ -102,6 +102,8 @@ return [
     'address' => 'العنوان الوطني',
     'price' => 'السعر',
     'offer_price' => 'سعر الخصم',
+    'init_price' => 'السعر الأولي',
+    'final_price' => 'السعر النهائي',
 
 
     'images' => 'الصور',

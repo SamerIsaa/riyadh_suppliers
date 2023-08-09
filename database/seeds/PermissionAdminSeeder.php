@@ -50,6 +50,8 @@ class PermissionAdminSeeder extends Seeder
             ['name' => 'show_categories', 'guard_name' => $guard_name,],
             ['name' => 'delete_categories', 'guard_name' => $guard_name,],
 
+            ['name' => 'manage_orders', 'guard_name' => $guard_name,],
+
             ['name' => 'manage_faq', 'guard_name' => $guard_name,],
             ['name' => 'manage_services', 'guard_name' => $guard_name,],
             ['name' => 'manage_pages', 'guard_name' => $guard_name,],

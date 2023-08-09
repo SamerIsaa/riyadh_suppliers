@@ -139,6 +139,22 @@ Route::group([
                 Route::post('operation', ['as' => 'operation', 'uses' => 'CategoryController@operation']);
             });
 
+            Route::group(['prefix' => 'orders', 'as' => 'orders.', 'middleware' => 'permission:manage_orders'], function () {
+
+                Route::group([], function () {
+                    Route::get('/', ['as' => 'index', 'uses' => 'OrderController@index']);
+                    Route::get('/data', ['as' => 'data', 'uses' => 'OrderController@datatable']);
+                });
+                Route::group(['prefix' => '{id}'], function () {
+                    Route::get('/show', ['as' => 'show', 'uses' => 'OrderController@show']);
+                    Route::post('/update-final-price/{item_id}', ['as' => 'updateFinalPrice', 'uses' => 'OrderController@updateFinalPrice']);
+                    Route::post('/change-status', ['as' => 'change_status', 'uses' => 'OrderController@changeStatus']);
+                });
+
+                Route::delete('/{id}', ['as' => 'delete', 'uses' => 'OrderController@delete', 'middleware' => 'permission:delete_categories']);
+                Route::post('operation', ['as' => 'operation', 'uses' => 'OrderController@operation']);
+            });
+
 
             Route::group(['prefix' => 'services', 'as' => 'services.', 'middleware' => 'permission:manage_services'], function () {
                 Route::get('index', ['as' => 'index', 'uses' => 'ServiceController@index']);
