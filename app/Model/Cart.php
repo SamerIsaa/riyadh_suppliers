@@ -12,6 +12,8 @@ class Cart extends Model
 
     protected $guarded = [];
 
+    protected $attributes = ['final_price'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -20,5 +22,15 @@ class Cart extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function getProductPrice()
+    {
+        return isset($this->product?->offer_price) ? $this->product?->offer_price : $this->product?->price;
+    }
+
+    public function getFinalPriceAttribute()
+    {
+        return $this->getProductPrice() * $this->quantity;
     }
 }

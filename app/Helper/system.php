@@ -142,6 +142,11 @@ function diff_for_humans($date)
     return Carbon::parse($date)->diffForHumans();
 }
 
+function format_date($date):string
+{
+    return Carbon::parse($date)->format('Y-m-d');
+}
+
 function has_caliber_data($id)
 {
     return in_array($id, [4, 5]);

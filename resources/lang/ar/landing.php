@@ -36,6 +36,20 @@ return [
     'account_settings' => 'اعدادات الحساب',
     'change_password' => 'تغيير كلمة المرور',
 
+    'order_summary' => 'ملخص الطلب',
+    'total_products' => 'مجموع المنتجات',
+    'final_total' => 'الإجمالي',
+    'confirm_order' => 'اتمام الطلب',
+    'order_date' => 'تاريخ الطلب',
+    'order_price' => 'السعر',
+    'order_not_determined' => 'لم يحدد بعد',
+
+    "order_statuses" => [
+        'new' => 'جديد',
+        'in_progress' => 'قيد المراجعة',
+        'completed' => 'مكتمل',
+
+    ],
 
     'copy_rights' => 'جميع الحقوق محفوظة © هامة ' . now()->year,
     'contacts_title' => 'لتتحدث أكثر معنا!',
@@ -58,5 +72,5 @@ return [
     'career' => 'وظائف',
     'terms' => 'الشروط و الاحكام',
     'privcy' => 'سياية الخصوصية',
-    'apply'=>'تقديم'
+    'apply' => 'تقديم'
 ];

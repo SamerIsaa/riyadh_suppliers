@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Front\PasswordRequest;
 use App\Http\Requests\Front\ProfileRequest;
+use App\Model\Order;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -42,6 +43,8 @@ class UserController extends Controller
 
     public function ordersIndex()
     {
-        return view('front.user.orders');
+        $user = auth()->user();
+        $data['orders'] = Order::query()->where('user_id' , $user->id)->with('items.product.translations')->get();
+        return view('front.user.orders' , $data);
     }
 }

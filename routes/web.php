@@ -95,6 +95,8 @@ Route::group([
         Route::group(['prefix' => 'cart' , 'as' => 'cart.' ] , function (){
             Route::get('/', [CartController::class, 'index'])->name('index');
             Route::post('/', [CartController::class, 'store'])->name('store');
+            Route::post('{id}/update', [CartController::class, 'update'])->name('update');
+            Route::post('confirm', [CartController::class, 'confirm'])->name('confirm');
 
 
         });

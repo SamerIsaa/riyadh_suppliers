@@ -1,4 +1,4 @@
-@extends('front.layout.master' , ['title' => __('panel.profile') , 'show_header' => true])
+@extends('front.layout.master' , ['title' => __('panel.orders') , 'show_header' => true])
 
 
 @section('content')
@@ -24,10 +24,9 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                @include('front.user.partials.order_card')
-                                @include('front.user.partials.order_card')
-                                @include('front.user.partials.order_card')
-
+                                @foreach($orders as $order)
+                                    @include('front.user.partials.order_card')
+                                @endforeach
                             </div>
                         </div>
                     </div>

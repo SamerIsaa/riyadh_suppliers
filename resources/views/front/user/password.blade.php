@@ -1,4 +1,4 @@
-@extends('front.layout.master' , ['title' => __('panel.profile') , 'show_header' => true])
+@extends('front.layout.master' , ['title' => __('landing.change_password') , 'show_header' => true])
 
 
 @section('content')

@@ -1,6 +1,7 @@
 <?php
 return [
     'cart_added_successfully' => 'تم أضافة المنتج بنجاح إلى سلة التسوق الخاصة بك',
+    'cart_updated_successfully' => 'تم تحديث عربة التسوق بنجاح',
     'empty_cart' => 'لا يوجد لديك عناصر في سلة التسوق الخاصة بك',
     'product_miss_quantity' => 'لقد نفذت الكمية المطلوبة من المنتج :product',
     'added_successfully' => 'تم حفظ المعلومات بنجاح',

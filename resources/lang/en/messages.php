@@ -1,6 +1,7 @@
 <?php
 return [
     'cart_added_successfully' => 'The product has been successfully added to your shopping cart',
+    'cart_updated_successfully' => 'The cart has been updated successfully',
     'empty_cart' => 'You have no items in your Shopping Cart',
     'product_miss_quantity' => 'The required amount of product :product has run out',
     'added_successfully' => 'Data saved successfully',
