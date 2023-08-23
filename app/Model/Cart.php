@@ -10,10 +10,10 @@ class Cart extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
 
-    protected $attributes = ['final_price'];
+    protected $fillable = ['user_id', 'product_id', 'quantity'];
 
+    protected $appends = ['final_price']; 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
