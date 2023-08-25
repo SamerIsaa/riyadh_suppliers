@@ -5,7 +5,7 @@
     <title>{{ $title?? __('translate.app_name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-{{--    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>--}}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
 
     <link rel="stylesheet" href="{{ asset('frontAssets/css/animate.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('frontAssets/css/fontawesome.min.css') }}"/>
