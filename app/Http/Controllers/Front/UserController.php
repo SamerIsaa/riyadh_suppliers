@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Front\OrderRequest;
 use App\Http\Requests\Front\PasswordRequest;
 use App\Http\Requests\Front\ProfileRequest;
 use App\Model\Order;
+use App\Model\OrderItem;
+use App\Model\OrderProduct;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Exception;
 
 class UserController extends Controller
 {
@@ -44,7 +50,39 @@ class UserController extends Controller
     public function ordersIndex()
     {
         $user = auth()->user();
-        $data['orders'] = Order::query()->where('user_id' , $user->id)->with('items.product.translations')->get();
-        return view('front.user.orders' , $data);
+        $data['orders'] = Order::query()->where('user_id' , $user->id)->with('products')->get();
+        return view('front.user.order.index' , $data);
+    }
+    public function ordersCreate()
+    {
+        return view('front.user.order.create');
+    }
+    public function ordersStore(OrderRequest $request)
+    {
+
+        DB::beginTransaction();
+
+        try {
+
+            $order = Order::query()->create([
+                'user_id' => auth()->id()
+            ]);
+
+            $items = $request->get('items' , []);
+            foreach ($items as $item) {
+                $item['order_id'] = $order->id;
+                OrderProduct::query()->create($item);
+            }
+            DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => __('messages.done_successfully'),
+                'redirect_url' => route('front.profile.orders.index'),
+            ]);
+        } catch (Exception $exception) {
+            DB::rollBack();
+            return $this->response_api(false, $exception->getCode(), __('messages.error'));
+        }
     }
 }

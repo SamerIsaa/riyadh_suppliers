@@ -1,0 +1,49 @@
+@extends('front.layout.master' , ['title' => __('panel.orders') , 'show_header' => true])
+
+
+@section('content')
+
+    @include('front.components.page_header' , ['title' => __('panel.profile')  ] )
+
+
+    <section class="section">
+        <div class="container">
+            <div class="row mb-4 wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">
+                <div class="col-12">
+                    <h2 class="section-title font-bold">@lang('landing.account_settings')</h2>
+                </div>
+            </div>
+            <div class="row">
+                @include('front.user.partials.sidebar' , ['sub_active' => 'orders'])
+                <div class="col-lg-9 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms">
+                    <div class="box-shadow p-4 p-lg-5 rounded-15">
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <h3 class="font-bold">@lang('panel.orders')</h3>
+                            </div>
+                            <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                <a class="nav-link btn btn-primary rounded-pill text-white"
+                                   href="{{ route('front.profile.orders.create') }}">
+                                    {{ __('landing.create_order') }}
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                @foreach($orders as $order)
+                                    @include('front.user.partials.order_card')
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@endsection
+
+@push('front_js')
+    <script src="{{ asset('frontAssets/js/post.js') }}"/>
+@endpush

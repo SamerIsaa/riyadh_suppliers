@@ -20,14 +20,14 @@
                         <a class="nav-link {{ @$active=="our_services" ? "active" : "" }}"
                            href="#section-service">{{ __('landing.our_services') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ @$active=="last_offers" ? "active" : "" }}"
-                           href="#offers">{{ __('landing.last_offers') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ @$active=="products" ? "active" : "" }}"
-                           href="#products">{{ __('landing.products') }}</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link {{ @$active=="last_offers" ? "active" : "" }}"--}}
+{{--                           href="#offers">{{ __('landing.last_offers') }}</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link {{ @$active=="products" ? "active" : "" }}"--}}
+{{--                           href="#products">{{ __('landing.products') }}</a>--}}
+{{--                    </li>--}}
                     @foreach($header_pages as $page)
                     <li class="nav-item">
                         <a class="nav-link {{ @$active=="page_" . $page->id  ? "active" : "" }}"
@@ -44,7 +44,7 @@
                             </a>
                             <ul class="dropdown-menu border-0 shadow">
                                 <li><a class="dropdown-item" href="{{ route('front.profile.index') }}"><i class="fa-solid fa-user fa-xs me-1"></i> @lang('panel.profile')</a></li>
-                                <li><a class="dropdown-item" href="{{ route('front.cart.index') }}"><i class="fa-solid fa-cart-shopping fa-xs me-1"></i> @lang('landing.cart')</a></li>
+{{--                                <li><a class="dropdown-item" href="{{ route('front.cart.index') }}"><i class="fa-solid fa-cart-shopping fa-xs me-1"></i> @lang('landing.cart')</a></li>--}}
                                 <li><a class="dropdown-item" href="{{ route('front.auth.logout') }}"><i class="fa-solid fa-right-from-bracket fa-xs me-1"></i> @lang('panel.logout')</a></li>
                             </ul>
                         </li>

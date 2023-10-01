@@ -83,40 +83,39 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th class="pl-0 font-weight-bold text-muted text-uppercase">@lang('landing.product')</th>
+                                                <th class="pl-0 text-center font-weight-bold text-muted text-uppercase">@lang('landing.product')</th>
                                                 <th class="text-center font-weight-bold text-muted text-uppercase">@lang('landing.quantity')</th>
-                                                <th class="text-center font-weight-bold text-muted text-uppercase">@lang('constants.init_price')</th>
-                                                <th class="text-center font-weight-bold text-muted text-uppercase">@lang('constants.final_price')</th>
+                                                <th class="text-center font-weight-bold text-muted text-uppercase">@lang('constants.unit_price')</th>
                                                 <th class="text-center pr-0 font-weight-bold text-muted text-uppercase">@lang('landing.final_total')</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($item->items as $order_item)
-                                                <tr class="font-weight-boldest">
-                                                    <td class="border-0 pl-0 pt-7 d-flex align-items-center">
+                                            @foreach($item->products as $order_item)
+                                                <tr class="font-weight-boldest ">
+                                                    <td class=" pl-0 pt-7  text-center">
                                                         <!--begin::Symbol-->
-                                                        <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light">
-                                                            <div class="symbol-label"
-                                                                 style="background-image: url('{{image_url($order_item->product->image)}}')"></div>
-                                                        </div>
+                                                        {{--                                                        <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light">--}}
+                                                        {{--                                                            <div class="symbol-label"--}}
+                                                        {{--                                                                 style="background-image: url('{{image_url($order_item->product->image)}}')"></div>--}}
+                                                        {{--                                                        </div>--}}
                                                         <!--end::Symbol-->
-                                                        {{ @$order_item->product->title }}
+                                                        {{ @$order_item->product_code }}
                                                     </td>
                                                     <td class="text-center pt-7 align-middle">{{ $order_item->quantity }}</td>
-                                                    <td class="text-center pt-7 align-middle">{{ $order_item->init_price }} @lang('landing.r.s')</td>
+
                                                     <td class="text-center pt-7 align-middle mx-4">
 
                                                         <div class="d-flex justify-content-center">
                                                             <input class="form-control w-150px" type="number"
                                                                    name="final_price"
-                                                                   value="{{ $order_item->final_price }}">
+                                                                   value="{{ $order_item->unit_price }}">
                                                             <button type="button"
                                                                     class="btn btn-primary font-weight-bold mx-2 save_final_price"
                                                                     data-url="{{route('panel.orders.updateFinalPrice' , [$item->id , $order_item->id ])}}">@lang('constants.save')</button>
                                                         </div>
 
                                                     </td>
-                                                    <td class="text-primary pr-0 pt-7 text-right align-middle">{{ $order_item->getFinalPrice() ? $order_item->getFinalPrice() . " " . __('landing.r.s') : __('landing.order_not_determined')  }}</td>
+                                                    <td class="text-primary pr-0 pt-7 text-center align-middle">{{ $order_item->final_price ? $order_item->final_price . " " . __('landing.r.s') : __('landing.order_not_determined')  }}</td>
                                                 </tr>
 
                                             @endforeach
@@ -244,8 +243,8 @@
                     $.ajax({
                         url: url,
                         method: 'POST',
-                        data : {
-                            'status' : status
+                        data: {
+                            'status': status
                         },
                         success: function (response) {
                             if (response.status) {

@@ -9,10 +9,10 @@
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <ul class="link-footer d-flex flex-wrap">
                     <li><a href="{{ route('front.index') }}">{{ __('landing.home') }}</a></li>
-                    <li><a href="#products">{{ __('landing.products') }}</a></li>
+{{--                    <li><a href="#products">{{ __('landing.products') }}</a></li>--}}
                     <li><a href="#section-about">{{ __('landing.about') }}</a></li>
                     <li><a href="#section-service">{{ __('landing.our_services') }}</a></li>
-                    <li><a href="#offers">{{ __('landing.last_offers') }}</a></li>
+{{--                    <li><a href="#offers">{{ __('landing.last_offers') }}</a></li>--}}
                     <li><a href="{{ route('front.faqs') }}">{{ __('landing.faqs') }}</a></li>
 
                     @foreach($footer_pages as $page)

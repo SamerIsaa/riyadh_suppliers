@@ -17,11 +17,11 @@
                             data-wow-duration="1500ms">
                             {{ $settings->valueOf('slider_description_' . $locale) }}
                         </h3>
-                        <div class="home-action wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1500ms">
-                            <a class="btn btn-primary rounded-pill font-bold" href="{{ route('front.products.index') }}">
-                                {{ $settings->valueOf('slider_button_title_' . $locale) }}
-                            </a>
-                        </div>
+{{--                        <div class="home-action wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1500ms">--}}
+{{--                            <a class="btn btn-primary rounded-pill font-bold" href="{{ route('front.products.index') }}">--}}
+{{--                                {{ $settings->valueOf('slider_button_title_' . $locale) }}--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -95,31 +95,31 @@
     @endif
     <!-- end:: section -->
     <!-- start:: section -->
-    @if(isset($offers) && $offers->count())
-        <section class="section" id="offers">
-            <div class="container">
-                <div class="row mb-4 wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h2 class="section-title font-bold mb-2">{{ __('landing.last_offers') }}</h2>
-                            <a class="btn btn-primary rounded-pill"
-                               href="{{ route('front.products.index' , ['is-offer' => true]) }}">
-                                {{ __('landing.show_all') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">
+{{--    @if(isset($offers) && $offers->count())--}}
+{{--        <section class="section" id="offers">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row mb-4 wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">--}}
+{{--                    <div class="col-12">--}}
+{{--                        <div class="d-flex align-items-center justify-content-between">--}}
+{{--                            <h2 class="section-title font-bold mb-2">{{ __('landing.last_offers') }}</h2>--}}
+{{--                            <a class="btn btn-primary rounded-pill"--}}
+{{--                               href="{{ route('front.products.index' , ['is-offer' => true]) }}">--}}
+{{--                                {{ __('landing.show_all') }}--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">--}}
 
-                    @foreach($offers as $offer)
-                        @include('front.components.product' , ['item' => $offer])
-                    @endforeach
+{{--                    @foreach($offers as $offer)--}}
+{{--                        @include('front.components.product' , ['item' => $offer])--}}
+{{--                    @endforeach--}}
 
-                </div>
-            </div>
-        </section>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
-    @endif
+{{--    @endif--}}
     <!-- end:: section -->
     <!-- start:: section -->
 
@@ -164,27 +164,27 @@
     @endif
     <!-- end:: section -->
     <!-- start:: section -->
-    @if(isset($products) && $products->count())
-        <section class="section" id="products">
-            <div class="container">
-                <div class="row mb-4 wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h2 class="section-title font-bold mb-2">{{ __('landing.products') }}</h2>
-                            <a class="btn btn-primary rounded-pill"
-                               href="{{ route('front.products.index') }}">{{ __('landing.show_all') }}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms">
-                    @foreach($products as $product)
-                        @include('front.components.product' , ['item' => $product])
-                    @endforeach
+{{--    @if(isset($products) && $products->count())--}}
+{{--        <section class="section" id="products">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row mb-4 wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">--}}
+{{--                    <div class="col-12">--}}
+{{--                        <div class="d-flex align-items-center justify-content-between">--}}
+{{--                            <h2 class="section-title font-bold mb-2">{{ __('landing.products') }}</h2>--}}
+{{--                            <a class="btn btn-primary rounded-pill"--}}
+{{--                               href="{{ route('front.products.index') }}">{{ __('landing.show_all') }}</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms">--}}
+{{--                    @foreach($products as $product)--}}
+{{--                        @include('front.components.product' , ['item' => $product])--}}
+{{--                    @endforeach--}}
 
-                </div>
-            </div>
-        </section>
-    @endif
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+{{--    @endif--}}
     <!-- end:: section -->
     <!-- start:: section -->
     <section class="section section-contct">

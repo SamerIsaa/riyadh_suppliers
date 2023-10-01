@@ -68,11 +68,11 @@ Route::group([
     Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
     Route::get('/faqs', ['as' => 'faqs', 'uses' => 'HomeController@faqs']);
 
-    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
-        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
-
-    });
+//    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+//        Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+//        Route::get('/{id}/show', ['as' => 'show', 'uses' => 'ProductController@show']);
+//
+//    });
 
     Route::group(['prefix' => 'contact-us', 'as' => 'contacts.'], function () {
         Route::post('/', [ContactController::class, 'store'])->name('store');
@@ -90,16 +90,18 @@ Route::group([
             Route::post('/password', [UserController::class, 'passwordUpdate'])->name('password.update');
 
             Route::get('/orders', [UserController::class, 'ordersIndex'])->name('orders.index');
+            Route::get('/orders/create', [UserController::class, 'ordersCreate'])->name('orders.create');
+            Route::post('/orders/create', [UserController::class, 'ordersStore'])->name('orders.store');
 
         });
-        Route::group(['prefix' => 'cart' , 'as' => 'cart.' ] , function (){
-            Route::get('/', [CartController::class, 'index'])->name('index');
-            Route::post('/', [CartController::class, 'store'])->name('store');
-            Route::post('{id}/update', [CartController::class, 'update'])->name('update');
-            Route::post('confirm', [CartController::class, 'confirm'])->name('confirm');
-
-
-        });
+//        Route::group(['prefix' => 'cart' , 'as' => 'cart.' ] , function (){
+//            Route::get('/', [CartController::class, 'index'])->name('index');
+//            Route::post('/', [CartController::class, 'store'])->name('store');
+//            Route::post('{id}/update', [CartController::class, 'update'])->name('update');
+//            Route::post('confirm', [CartController::class, 'confirm'])->name('confirm');
+//
+//
+//        });
 
         Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 

@@ -19,6 +19,11 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function products(): HasMany
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -50,24 +55,17 @@ class Order extends Model
         if (isset($query['generalSearch'])) {
             $q->whereHas('user', function ($q) {
                 $q->filter();
-            })->orWhereHas('items', function ($q) {
+            })->orWhereHas('products', function ($q) {
                 $q->filter();
             });
         }
     }
 
-    public function checkAllItemsFinalPrice()
+    public function checkAllItemsFinalPrice(): void
     {
-        $items = $this->items;
-        $final_total = 0;
+        $items = $this->products;
         if ($items->count() == $items->whereNotNull('final_price')->count()) {
-
-            foreach ($items as $item) {
-                $final_total += $item->final_price * $item->quantity;
-            }
-
-
-            $this->total = $final_total;
+            $this->total = $items->sum('final_price');
             $this->save();
         }
     }

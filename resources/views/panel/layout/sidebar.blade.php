@@ -364,7 +364,7 @@
 {{--                            <span class="svg-icon menu-icon">--}}
 {{--                                    <i class="fas fa-images"></i>--}}
 {{--                            </span>--}}
-{{--                            <span class="menu-text">@lang('panel.site_sliders')</span>--}}
+                            <span class="menu-text">@lang('panel.site_sliders')</span>
 {{--                            <i class="menu-arrow"></i>--}}
 {{--                        </a>--}}
 {{--                        <div class="menu-submenu">--}}

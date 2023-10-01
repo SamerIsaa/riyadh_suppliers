@@ -11,6 +11,7 @@ use App\Http\Resources\PanelDatatable\OrderResource;
 use App\Model\Category;
 use App\Model\Order;
 use App\Model\OrderItem;
+use App\Model\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
@@ -33,7 +34,7 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $data['item'] = Order::query()->with(['user', 'items.product.translations'])->findOrFail($id);
+        $data['item'] = Order::query()->with(['user', 'products'])->findOrFail($id);
         $data['statuses'] = ['new', 'in_progress', 'completed'];
         return view('panel.orders.show', $data);
     }
@@ -46,7 +47,7 @@ class OrderController extends Controller
             'final_price' => __('constants.final_price')
         ]);
 
-        $item = OrderItem::query()->with('order')->where('order_id', $id)->find($id);
+        $item = OrderProduct::query()->with('order')->where('order_id', $id)->find($item_id);
         if (!$item) {
             return $this->response_api(false, StatusCodes::NOT_FOUND, __('messages.not_found'));
         }
@@ -54,7 +55,8 @@ class OrderController extends Controller
         DB::beginTransaction();
         try {
 
-            $item->final_price = $request->get('final_price');
+            $item->unit_price = $request->get('final_price');
+            $item->final_price = $item->unit_price * $item->quantity;
             $item->save();
 
             $item->order->checkAllItemsFinalPrice();

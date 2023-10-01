@@ -9,6 +9,7 @@ return [
     'products' => 'منتجاتنا',
     'register_new_account' => 'انشاء حساب جديد',
     'sign_in' => 'تسجيل دخول',
+    'create_order' => 'انشاء طلبية',
     'faqs' => 'الاسئلة الشائعة',
     'contact_us' => 'تواصل معنا',
 
@@ -19,6 +20,7 @@ return [
     'faq_desc' => 'موزع لقطع غيار السيارات المفضل لدى المستهلك',
     'auth_desc' => 'موزع لقطع غيار السيارات المفضل في المملكة العربية السعودية',
     'product_number' => 'رقم القطعة',
+    'product_model_code' => 'كود المنتج',
     'product' => 'المنتج',
     'quantity' => 'الكمية',
     'r.s' => 'رس',
@@ -44,6 +46,7 @@ return [
     'order_details' => 'تفاصيل الطلب',
     'order_no' => 'رقم الطلب',
     'order_price' => 'السعر',
+    'order_products' => 'منتجات الطلب',
     'order_not_determined' => 'لم يحدد بعد',
 
     "order_statuses" => [

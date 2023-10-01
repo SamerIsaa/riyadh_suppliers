@@ -102,7 +102,7 @@ return [
     'address' => 'العنوان الوطني',
     'price' => 'السعر',
     'offer_price' => 'سعر الخصم',
-    'init_price' => 'السعر الأولي',
+    'unit_price' => 'سعر القطعة',
     'final_price' => 'السعر النهائي',
 
 
