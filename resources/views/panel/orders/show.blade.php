@@ -36,7 +36,7 @@
                                     <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
                                         <h1 class="display-4 font-weight-boldest mb-10">@lang('landing.order_details')</h1>
 
-                                        <div class="d-flex flex-column align-items-md-end px-0">
+                                        <div class="d-flex justify-content-end align-items-md-end px-0">
                                             <!--begin::Logo-->
 
                                             <div class="form-group">
@@ -55,7 +55,15 @@
                                                 </select>
                                             </div>
 
+                                            <div class="form-group">
+                                                <a href="{{ route('panel.orders.check' , $item->id ) }}" target="_blank"
+                                                        class="btn btn-primary font-weight-bold mx-2">@lang('constants.check_order')</a>
+
+                                            </div>
+
+
                                         </div>
+
 
                                     </div>
                                     <div class="border-bottom w-100"></div>

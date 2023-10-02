@@ -147,6 +147,7 @@ Route::group([
                 });
                 Route::group(['prefix' => '{id}'], function () {
                     Route::get('/show', ['as' => 'show', 'uses' => 'OrderController@show']);
+                    Route::get('/check', ['as' => 'check', 'uses' => 'OrderController@check']);
                     Route::post('/update-final-price/{item_id}', ['as' => 'updateFinalPrice', 'uses' => 'OrderController@updateFinalPrice']);
                     Route::post('/change-status', ['as' => 'change_status', 'uses' => 'OrderController@changeStatus']);
                 });

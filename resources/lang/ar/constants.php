@@ -48,6 +48,7 @@ return [
     'delete' => 'حذف',
     'back' => 'رجوع',
     'save' => 'حفظ',
+    'check_order' => 'فحص الطلب',
     'title' => 'العنوان',
     'product_number' => 'رقم المنتج',
     'colored_title' => 'العنوان الملون',

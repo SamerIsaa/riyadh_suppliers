@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Panel;
 
 
 use App\Constants\StatusCodes;
-use App\Http\Requests\Panel\CategoryRequest;
-use App\Http\Resources\PanelDatatable\CategoryResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PanelDatatable\OrderResource;
 use App\Model\Category;
 use App\Model\Order;
-use App\Model\OrderItem;
 use App\Model\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Services\MizeDevicesService;
 use Mockery\Exception;
 
 class OrderController extends Controller
@@ -37,6 +35,21 @@ class OrderController extends Controller
         $data['item'] = Order::query()->with(['user', 'products'])->findOrFail($id);
         $data['statuses'] = ['new', 'in_progress', 'completed'];
         return view('panel.orders.show', $data);
+    }
+
+    public function check($id, MizeDevicesService $service)
+    {
+
+        $order = Order::query()->with('products')->find($id);
+        if (!$order) {
+            return $this->response_api(false, StatusCodes::NOT_FOUND, __('messages.not_found'));
+        }
+
+        $list = $service->myResource($order->products);
+
+        return view('panel.orders.check_result', compact('list'));
+
+
     }
 
     public function updateFinalPrice($id, $item_id, Request $request)

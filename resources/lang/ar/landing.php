@@ -22,6 +22,7 @@ return [
     'product_number' => 'رقم القطعة',
     'product_model_code' => 'كود المنتج',
     'product' => 'المنتج',
+    'result' => 'النتيجة',
     'quantity' => 'الكمية',
     'r.s' => 'رس',
     'instead_of' => 'بدلا من',
