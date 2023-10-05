@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Http;
 class MizeDevicesService
 {
 
-    private $username = "admin";
-    private $password = "adminabha";
+    private $username = "TEST";
+    private $password = "123";
 
     private $headers = [
         'App-Code' => 2,
@@ -33,12 +33,13 @@ class MizeDevicesService
         $response = Http::withoutVerifying()
             ->withHeaders($this->headers)
             ->withOptions(["verify"=>false])
-            ->post('https://ts.mizedevices.com:8443/TempApi/actions/myResource', $body)
+            ->post('https://mr.njazsoft.com:8443/apiKaraz/actions/myResource', $body)
             ->body();
 
+ 
         $response = json_decode($response, true);
 
-        return @$response['list'];
+        return @$response['list']??[];
     }
 
 
