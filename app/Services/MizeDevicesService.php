@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
-use Mockery\Exception;
 
 class MizeDevicesService
 {
@@ -44,7 +43,7 @@ class MizeDevicesService
 
             return @$response['list'] ?? [];
 
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return [];
         }
     }
