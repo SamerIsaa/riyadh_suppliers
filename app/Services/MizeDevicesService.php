@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Mockery\Exception;
 
 class MizeDevicesService
 {
@@ -30,16 +31,22 @@ class MizeDevicesService
             'password' => $this->password,
             'arrayData' => $arrayData,
         ];
-        $response = Http::withoutVerifying()
-            ->withHeaders($this->headers)
-            ->withOptions(["verify"=>false])
-            ->post('https://mr.njazsoft.com:8443/apiKaraz/actions/myResource', $body)
-            ->body();
 
- 
-        $response = json_decode($response, true);
+        try {
+            $response = Http::withoutVerifying()
+                ->withHeaders($this->headers)
+                ->withOptions(["verify" => false])
+                ->post('https://mr.njazsoft.com:8443/apiKaraz/actions/myResource', $body)
+                ->body();
 
-        return @$response['list']??[];
+
+            $response = json_decode($response, true);
+
+            return @$response['list'] ?? [];
+
+        } catch (Exception $exception) {
+            return [];
+        }
     }
 
 
